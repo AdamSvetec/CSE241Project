@@ -32,7 +32,6 @@ public class InventoryItem{
 	//Insert given InventoryItem into the database
 	public boolean insert(){
 		String query = "insert into inventory_item values ( '"+meid+"', '"+address+"' )";
-		System.out.println(query);
 		return DBConnection.submitQueryBoolean(query);
 	}
 
