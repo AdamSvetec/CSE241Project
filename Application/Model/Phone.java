@@ -4,6 +4,9 @@
 import java.util.Random;
 import java.util.List;
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 //Phone object that will be intermediary between user interface and database phone object
 public class Phone{
@@ -23,6 +26,21 @@ public class Phone{
 	public boolean insert(){
 		String query = "insert into phone values ( '"+meid+"', '"+manufacturer+"', '"+phoneModel+"' )";
 		return DBConnection.submitQueryBoolean(query);
+	}
+
+	//Query for all phones in database
+	public List<Phone> queryAllPhones(){
+		ResultSet rs = DBConnection.submitQueryResultSet("select * from phones");
+		List<Phone> phoneList = new ArrayList<Phone>();
+		try{
+			while(rs.next()){
+				phoneList.add(new Phone(rs.getInt("meid"),rs.getString("manufacturer"),rs.getString("phone_model")));
+			}
+		}
+		catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+		}
+		return phoneList;
 	}
 
 	//Populates database with random data
