@@ -21,8 +21,8 @@ public class DBConnection{
 				password = passwd;
 				return true;
 			}
-		}catch(SQLException ex){
-			System.out.println(ex.getMessage());
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
 		}
 		return false;
 	}
@@ -30,5 +30,34 @@ public class DBConnection{
 	//Set password for connection
 	public static void setPassword(String passwd){
 		password = passwd;
+	}
+
+	//Submits a query and returns a boolean if successful
+	public static boolean submitQueryBoolean(String query){
+		Connection conn = getConnection();
+		if(conn == null){
+			return false;
+		}
+		try{
+			Statement s = conn.createStatement();
+			s.executeQuery(query);
+			return true;
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+		}
+		return false;
+	}
+
+	//Gets the connection for edgar1 database
+	//Returns null if error
+	private static Connection getConnection(){
+		Connection connection;
+		try{
+			connection = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", username, password);
+			return connection;
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+		}
+		return null;
 	}
 }
