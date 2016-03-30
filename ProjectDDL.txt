@@ -24,7 +24,7 @@ id numeric(8),
 meid numeric(8),
 start_time timestamp,
 end_time timestamp,
-secondary_number numeric(8),
+secondary_number numeric(11),
 primary key(id),
 foreign key(meid) references phone
 );
