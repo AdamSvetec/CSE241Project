@@ -63,11 +63,11 @@ public class Store{
 	//Populates database with random data
 	public static void populateDB(){
 		new Store("Online Store", true, 99999999).insert();
-		new Store("627 Oxford Street", false, 100).insert();
-		new Store("234 North Street", false, 124).insert();
-		new Store("376 Mulberry Lane", false, 158).insert();
-		new Store("22 East Second Street", false, 200).insert();
-		new Store("518 North Kingston Drive", false, 105).insert();
+		new Store("834 Lafayette Avenue, Kokomo, IN 46901", false, 100).insert();
+		new Store("818 Maple Lane, Mesa, AZ 85203", false, 124).insert();
+		new Store("555 Hickory Street, Jackson Heights, NY 11372", false, 158).insert();
+		new Store("994 Windsor Drive, Ashtabula, OH 44004", false, 200).insert();
+		new Store("959 Holly Drive, Georgetown, SC 29440", false, 105).insert();
 	}
 
 	//Deletes all instances of store in the database
