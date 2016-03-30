@@ -27,7 +27,7 @@ public class TextMessage{
 		this.secondary_number = secondary_number;
 	}
 
-	//Insert given phone_call into the database
+	//Insert given text_message into the database
 	public boolean insert(){
 		SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.ss");
 		String query = "insert into text_message values ( '"+id+"', '"+meid+"', TO_TIMESTAMP ('"+dtf.format(sendTime)+"', 'YYYY-MM-DD HH24:MI:SS.FF'), '"+messageSize+"', '"+secondary_number+"' )";
@@ -42,7 +42,7 @@ public class TextMessage{
 		Date sendTime;
 		int messageSize;
 		String secondary_number;
-		for(int id = 0; id < 1000; id++){
+		for(int id = 0; id < 15; id++){
 			meid = phoneList.get(new Random().nextInt(phoneList.size())).getMeid();
 			sendTime = new Date(Math.abs(System.currentTimeMillis() - new Random().nextInt(999999999)));
 			messageSize = new Random().nextInt(140);
