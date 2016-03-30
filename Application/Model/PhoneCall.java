@@ -36,7 +36,6 @@ public class PhoneCall{
 
 	//Populates database with random data
 	public static void populateDB(){
-		DBConnection.submitQueryBoolean("delete from phone_call");
 		List<Phone> phoneList = Phone.queryAllPhones();
 		PhoneCall phoneCall;
 		int meid;
@@ -51,5 +50,10 @@ public class PhoneCall{
 			phoneCall = new PhoneCall(id, meid, startTime, endTime, secondary_number);
 			phoneCall.insert();
 		}
+	}
+
+	//Deletes all instances of phone_call in the database
+	public static void deleteAll(){
+		DBConnection.submitQueryBoolean("delete from phone_call");
 	}
 }

@@ -31,13 +31,11 @@ public class TextMessage{
 	public boolean insert(){
 		SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.ss");
 		String query = "insert into text_message values ( '"+id+"', '"+meid+"', TO_TIMESTAMP ('"+dtf.format(sendTime)+"', 'YYYY-MM-DD HH24:MI:SS.FF'), '"+messageSize+"', '"+secondary_number+"' )";
-		System.out.println(query);
 		return DBConnection.submitQueryBoolean(query);
 	}
 
 	//Populates database with random data
 	public static void populateDB(){
-		DBConnection.submitQueryBoolean("delete from text_message");
 		List<Phone> phoneList = Phone.queryAllPhones();
 		TextMessage textMessage;
 		int meid;
@@ -52,5 +50,10 @@ public class TextMessage{
 			textMessage = new TextMessage(id, meid, sendTime, messageSize, secondary_number);
 			textMessage.insert();
 		}
+	}
+
+	//Deletes all instances of text_message in the database
+	public static void deleteAll(){
+		DBConnection.submitQueryBoolean("delete from text_message");
 	}
 }

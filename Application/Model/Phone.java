@@ -63,7 +63,6 @@ public class Phone{
 
 	//Populates database with random data
 	public static void populateDB(){
-		DBConnection.submitQueryBoolean("delete from phone");
 		List<String> manufacturerNames = Arrays.asList("Apple", "Blackberry", "LG");
 		List<String> appleModelNames = Arrays.asList("Iphone 5", "Iphone 6");
 		List<String> blackberryModelNames = Arrays.asList("Passport", "Leap");
@@ -83,5 +82,10 @@ public class Phone{
 				phone.insert();
 			}
 		}
+	}
+
+	//Deletes all instances of phone in the database
+	public static void deleteAll(){
+		DBConnection.submitQueryBoolean("delete from phone");
 	}
 }
