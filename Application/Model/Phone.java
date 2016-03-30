@@ -5,8 +5,7 @@ import java.util.Random;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 //Phone object that will be intermediary between user interface and database phone object
 public class Phone{
@@ -22,6 +21,21 @@ public class Phone{
 		this.phoneModel = phoneModel;
 	}
 
+	//Get meid
+	public int getMeid(){
+		return meid;
+	}
+
+	//Get manufacturer
+	public String getManufacturer(){
+		return manufacturer;
+	}
+
+	//Get model
+	public String getModel(){
+		return phoneModel;
+	}
+
 	//Insert given phone into the database
 	public boolean insert(){
 		String query = "insert into phone values ( '"+meid+"', '"+manufacturer+"', '"+phoneModel+"' )";
@@ -29,15 +43,19 @@ public class Phone{
 	}
 
 	//Query for all phones in database
-	public List<Phone> queryAllPhones(){
-		ResultSet rs = DBConnection.submitQueryResultSet("select * from phones");
+	public static List<Phone> queryAllPhones(){
 		List<Phone> phoneList = new ArrayList<Phone>();
+		Connection conn = DBConnection.getConnection();
 		try{
+			Statement s = conn.createStatement();
+			ResultSet rs = s.executeQuery("select * from phone");
 			while(rs.next()){
 				phoneList.add(new Phone(rs.getInt("meid"),rs.getString("manufacturer"),rs.getString("phone_model")));
 			}
-		}
-		catch(SQLException sqle){
+			rs.close();
+			s.close();
+			conn.close();
+		}catch(SQLException sqle){
 			Logger.logError(sqle.getMessage());
 		}
 		return phoneList;

@@ -9,6 +9,7 @@ CLASSES = \
 	JogWireless.java \
 	Model/DBConnection.java \
 	Model/Phone.java \
+	Model/PhoneCall.java \
 	Misc/Logger.java
 
 

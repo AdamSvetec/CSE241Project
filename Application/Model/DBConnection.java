@@ -50,7 +50,8 @@ public class DBConnection{
 		return false;
 	}
 
-	//
+	//Submits a query and returns a ResultSet
+	//Returns null if there is an error
 	public static ResultSet submitQueryResultSet(String query){
 		Connection conn = getConnection();
 		if(conn == null){
@@ -70,7 +71,7 @@ public class DBConnection{
 
 	//Gets the connection for edgar1 database
 	//Returns null if error
-	private static Connection getConnection(){
+	public static Connection getConnection(){
 		Connection connection;
 		try{
 			connection = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", username, password);
