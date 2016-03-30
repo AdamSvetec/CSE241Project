@@ -2,7 +2,7 @@ DROP TABLE previous_holding;
 DROP TABLE phone_call;
 DROP TABLE text_message;
 DROP TABLE internet_access;
-DROP TABLE holds;
+DROP TABLE inventory_item;
 DROP TABLE store;
 DROP TABLE phone_number;
 DROP TABLE account;
@@ -52,16 +52,16 @@ foreign key(meid) references phone
 
 CREATE TABLE store
 (
-address varchar(40),
+address varchar(60),
 is_online number(1,0),
 stock_limit numeric(10),
 primary key(address)
 );
 
-CREATE TABLE holds
+CREATE TABLE inventory_item
 (
 meid numeric(8),
-address varchar(30),
+address varchar(60),
 primary key(meid, address),
 foreign key(meid) references phone,
 foreign key(address) references store
@@ -71,7 +71,7 @@ CREATE TABLE customer
 (
 user_id numeric(8),
 name varchar(40),
-address varchar(40),
+address varchar(60),
 primary key(user_id)
 );
 
