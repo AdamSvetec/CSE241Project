@@ -11,10 +11,7 @@ public class DBConnection{
 	private final static String username = "ajs217";
 	private static String password;
 
-	private DBConnection(String password){
-		this.password = password;
-	}
-
+	//Validate that the given password is correct
 	public static boolean validate(String passwd){
 		Connection connection;
 		try{
@@ -25,8 +22,13 @@ public class DBConnection{
 				return true;
 			}
 		}catch(SQLException ex){
-
+			System.out.println(ex.getMessage());
 		}
 		return false;
+	}
+
+	//Set password for connection
+	public static void setPassword(String passwd){
+		password = passwd;
 	}
 }
