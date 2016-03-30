@@ -47,8 +47,25 @@ public class DBConnection{
 		}catch(SQLException sqle){
 			Logger.logError(sqle.getMessage());
 		}
-		conn.close();
 		return false;
+	}
+
+	//
+	public static ResultSet submitQueryResultSet(String query){
+		Connection conn = getConnection();
+		if(conn == null){
+			return null;
+		}
+		try{
+			Statement s = conn.createStatement();
+			ResultSet rs = s.executeQuery(query);
+			s.close();
+			conn.close();
+			return rs;
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+		}
+		return null;
 	}
 
 	//Gets the connection for edgar1 database
