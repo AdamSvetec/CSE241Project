@@ -1,3 +1,4 @@
+DROP TABLE previous_holding;
 DROP TABLE phone_call;
 DROP TABLE text_message;
 DROP TABLE internet_access;
@@ -8,8 +9,6 @@ DROP TABLE account;
 DROP TABLE plan;
 DROP TABLE customer;
 DROP TABLE phone;
-DROP TABLE previous_holding;
-
 
 CREATE TABLE phone
 (
@@ -95,7 +94,7 @@ foreign key(user_id) references customer
 
 CREATE TABLE phone_number
 (
-phone_num numeric(8),
+phone_num numeric(10),
 is_primary number(1,0),
 account_id numeric(8),
 meid numeric(8),
