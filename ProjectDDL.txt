@@ -1,0 +1,115 @@
+DROP TABLE phone_call;
+DROP TABLE text_message;
+DROP TABLE internet_access;
+DROP TABLE holds;
+DROP TABLE store;
+DROP TABLE phone_number;
+DROP TABLE account;
+DROP TABLE plan;
+DROP TABLE customer;
+DROP TABLE phone;
+DROP TABLE previous_holding;
+
+
+CREATE TABLE phone
+(
+meid numeric(8),
+manufacturer varchar(20),
+phone_model varchar(20),
+primary key(meid)
+);
+
+CREATE TABLE phone_call
+(
+id numeric(8),
+meid numeric(8),
+start_time timestamp,
+end_time timestamp,
+secondary_number numeric(8),
+primary key(id),
+foreign key(meid) references phone
+);
+
+CREATE TABLE text_message
+(
+id numeric(8),
+meid numeric(8),
+send_time timestamp,
+message_size numeric(8),
+secondary_number numeric(8),
+primary key(id),
+foreign key(meid) references phone
+);
+
+CREATE TABLE internet_access
+(
+id numeric(8),
+meid numeric(8),
+usage_time timestamp,
+access_bytes numeric(8),
+primary key(id),
+foreign key(meid) references phone
+);
+
+CREATE TABLE store
+(
+address varchar(40),
+is_online number(1,0),
+stock_limit numeric(10),
+primary key(address)
+);
+
+CREATE TABLE holds
+(
+meid numeric(8),
+address varchar(30),
+primary key(meid, address),
+foreign key(meid) references phone,
+foreign key(address) references store
+);
+
+CREATE TABLE customer
+(
+user_id numeric(8),
+name varchar(40),
+address varchar(40),
+primary key(user_id)
+);
+
+CREATE TABLE plan
+(
+plan_type varchar(12),
+primary key(plan_type)
+);
+
+CREATE TABLE account
+(
+account_id numeric(8),
+user_id numeric(8),
+plan_type varchar(12),
+account_type varchar(8),
+primary key(account_id),
+foreign key(plan_type) references plan,
+foreign key(user_id) references customer
+);
+
+CREATE TABLE phone_number
+(
+phone_num numeric(8),
+is_primary number(1,0),
+account_id numeric(8),
+meid numeric(8),
+primary key(phone_num),
+foreign key(account_id) references account,
+foreign key(meid) references phone
+);
+
+CREATE TABLE previous_holding
+(
+meid numeric(8),
+start_time timestamp,
+end_time timestamp,
+phone_number numeric(10),
+primary key(meid, phone_number),
+foreign key(meid) references phone
+);
