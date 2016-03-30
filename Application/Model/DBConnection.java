@@ -41,10 +41,13 @@ public class DBConnection{
 		try{
 			Statement s = conn.createStatement();
 			s.executeQuery(query);
+			s.close();
+			conn.close();
 			return true;
 		}catch(SQLException sqle){
 			Logger.logError(sqle.getMessage());
 		}
+		conn.close();
 		return false;
 	}
 
