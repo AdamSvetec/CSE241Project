@@ -10,6 +10,7 @@ CLASSES = \
 	Model/DBConnection.java \
 	Model/Phone.java \
 	Model/PhoneCall.java \
+	Model/TextMessage.java \
 	Misc/Logger.java
 
 
