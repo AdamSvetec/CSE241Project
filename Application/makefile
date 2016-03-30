@@ -12,6 +12,8 @@ CLASSES = \
 	Model/PhoneCall.java \
 	Model/TextMessage.java \
 	Model/InternetAccess.java \
+	Model/Store.java \
+	Model/InventoryItem.java \
 	Misc/Logger.java
 
 
