@@ -43,7 +43,7 @@ public class PhoneCall{
 		Date startTime;
 		Date endTime;
 		String secondary_number;
-		for(int id = 0; id < 15; id++){
+		for(int id = 0; id < 500; id++){
 			meid = phoneList.get(new Random().nextInt(phoneList.size())).getMeid();
 			startTime = new Date(Math.abs(System.currentTimeMillis() - new Random().nextInt(999999999)));
 			endTime = new Date(startTime.getTime() + new Random().nextInt(9999999));
