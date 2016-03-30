@@ -14,6 +14,7 @@ CLASSES = \
 	Model/InternetAccess.java \
 	Model/Store.java \
 	Model/InventoryItem.java \
+	Model/Customer.java \
 	Misc/Logger.java
 
 
