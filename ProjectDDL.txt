@@ -35,7 +35,7 @@ id numeric(8),
 meid numeric(8),
 send_time timestamp,
 message_size numeric(8),
-secondary_number numeric(8),
+secondary_number numeric(11),
 primary key(id),
 foreign key(meid) references phone
 );
@@ -94,7 +94,7 @@ foreign key(user_id) references customer
 
 CREATE TABLE phone_number
 (
-phone_num numeric(10),
+phone_num numeric(11),
 is_primary number(1,0),
 account_id numeric(8),
 meid numeric(8),
@@ -108,7 +108,7 @@ CREATE TABLE previous_holding
 meid numeric(8),
 start_time timestamp,
 end_time timestamp,
-phone_number numeric(10),
+phone_number numeric(11),
 primary key(meid, phone_number),
 foreign key(meid) references phone
 );
