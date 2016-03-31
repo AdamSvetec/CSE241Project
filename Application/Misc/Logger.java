@@ -1,7 +1,7 @@
 //Adam Svetec
 //CSE 241
 
-//Phone object that will be intermediary between user interface and database phone object
+//Logger object that will be called to output errors to whichever medium desired
 public class Logger{
 
 	//Populates database with random data

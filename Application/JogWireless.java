@@ -7,11 +7,12 @@ import java.util.Scanner;
 //Validates user and opens interfaces for use
 public class JogWireless{
 	public static void main(String [] args){
+		createClosingHook();
 		validateUser();
 	}
 
 	//Validate user by continually asking for password until correct one is entered
-	private static void validateUser(){
+	public static void validateUser(){
 		Scanner scan = new Scanner(System.in);
 		while(true){
 			System.out.println("Please enter password for ajs217 to access database:");
@@ -22,5 +23,14 @@ public class JogWireless{
 				return;
 			}
 		}
+	}
+
+	//Create a hook so that when database closes it will close connection to database
+	private static void createClosingHook(){
+		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+    		public void run() {
+    			DBConnection.closeConnection();
+    		}
+		}));
 	}
 }
