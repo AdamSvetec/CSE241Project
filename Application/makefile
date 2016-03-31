@@ -17,6 +17,7 @@ CLASSES = \
 	Model/Customer.java \
 	Model/Plan.java \
 	Model/Account.java \
+	Model/PhoneNumber.java \
 	Misc/Logger.java
 
 
