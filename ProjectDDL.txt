@@ -1,4 +1,3 @@
-DROP TABLE previous_holding;
 DROP TABLE phone_call;
 DROP TABLE text_message;
 DROP TABLE internet_access;
@@ -100,15 +99,5 @@ account_id numeric(8),
 meid numeric(8),
 primary key(phone_num),
 foreign key(account_id) references account,
-foreign key(meid) references phone
-);
-
-CREATE TABLE previous_holding
-(
-meid numeric(8),
-start_time timestamp,
-end_time timestamp,
-phone_number numeric(11),
-primary key(meid, phone_number),
 foreign key(meid) references phone
 );
