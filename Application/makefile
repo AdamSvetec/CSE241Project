@@ -16,6 +16,7 @@ CLASSES = \
 	Model/InventoryItem.java \
 	Model/Customer.java \
 	Model/Plan.java \
+	Model/Account.java \
 	Misc/Logger.java
 
 
