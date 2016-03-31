@@ -69,10 +69,10 @@ foreign key(address) references store
 
 CREATE TABLE customer
 (
-user_id numeric(8),
+customer_id numeric(8),
 name varchar(40),
 address varchar(60),
-primary key(user_id)
+primary key(customer_id)
 );
 
 CREATE TABLE plan
@@ -84,12 +84,12 @@ primary key(plan_type)
 CREATE TABLE account
 (
 account_id numeric(8),
-user_id numeric(8),
+customer_id numeric(8),
 plan_type varchar(12),
-account_type varchar(8),
+account_type varchar(12),
 primary key(account_id),
 foreign key(plan_type) references plan,
-foreign key(user_id) references customer
+foreign key(customer_id) references customer
 );
 
 CREATE TABLE phone_number
