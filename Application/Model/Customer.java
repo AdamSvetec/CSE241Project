@@ -47,7 +47,6 @@ public class Customer{
 			}
 			rs.close();
 			s.close();
-			conn.close();
 		}catch(SQLException sqle){
 			Logger.logError(sqle.getMessage());
 		}

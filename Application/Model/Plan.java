@@ -12,9 +12,8 @@ public class Plan{
 
 	//Enum to store plan_types
 	public enum PlanType {
-    	Individual,
-    	Family,
-    	Business  
+    	PayPerUse,
+    	Unlimited
 	}
 
 	private PlanType planType;
@@ -37,9 +36,8 @@ public class Plan{
 
 	//Populates database with random data
 	public static void populateDB(){
-		new Plan(PlanType.Individual).insert();
-		new Plan(PlanType.Family).insert();
-		new Plan(PlanType.Business).insert();
+		new Plan(PlanType.PayPerUse).insert();
+		new Plan(PlanType.Unlimited).insert();
 	}
 
 	//Deletes all instances of plan in the database

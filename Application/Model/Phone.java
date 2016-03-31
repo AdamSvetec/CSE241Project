@@ -54,7 +54,6 @@ public class Phone{
 			}
 			rs.close();
 			s.close();
-			conn.close();
 		}catch(SQLException sqle){
 			Logger.logError(sqle.getMessage());
 		}

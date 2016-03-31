@@ -10,14 +10,13 @@ public class DBConnection{
 
 	private final static String username = "ajs217";
 	private static String password;
+	private static Connection conn;
 
 	//Validate that the given password is correct
 	public static boolean validate(String passwd){
-		Connection connection;
 		try{
-			connection = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", username, passwd);
-			if(connection != null){
-				connection.close();
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", username, passwd);
+			if(conn != null){
 				password = passwd;
 				return true;
 			}
@@ -34,15 +33,10 @@ public class DBConnection{
 
 	//Submits a query and returns a boolean if successful
 	public static boolean submitQueryBoolean(String query){
-		Connection conn = getConnection();
-		if(conn == null){
-			return false;
-		}
 		try{
 			Statement s = conn.createStatement();
 			s.executeQuery(query);
 			s.close();
-			conn.close();
 			return true;
 		}catch(SQLException sqle){
 			Logger.logError(sqle.getMessage());
@@ -50,35 +44,18 @@ public class DBConnection{
 		return false;
 	}
 
-	//Submits a query and returns a ResultSet
-	//Returns null if there is an error
-	public static ResultSet submitQueryResultSet(String query){
-		Connection conn = getConnection();
-		if(conn == null){
-			return null;
-		}
-		try{
-			Statement s = conn.createStatement();
-			ResultSet rs = s.executeQuery(query);
-			s.close();
-			conn.close();
-			return rs;
-		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
-		}
-		return null;
-	}
-
 	//Gets the connection for edgar1 database
 	//Returns null if error
 	public static Connection getConnection(){
-		Connection connection;
+		return conn;
+	}
+
+	//Close Connection
+	public static void closeConnection(){
 		try{
-			connection = DriverManager.getConnection("jdbc:oracle:thin:@edgar1.cse.lehigh.edu:1521:cse241", username, password);
-			return connection;
+			conn.close();
 		}catch(SQLException sqle){
 			Logger.logError(sqle.getMessage());
 		}
-		return null;
 	}
 }
