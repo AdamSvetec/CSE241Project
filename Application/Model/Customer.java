@@ -9,20 +9,20 @@ import java.util.ArrayList;
 //Customer object that will be intermediary between user interface and database customer object
 public class Customer{
 
-	private int userId;
+	private int customerId;
 	private String name;
 	private String address;
 
 	//Constructor
-	private Customer(int userId, String name, String address){
-		this.userId = userId;
+	private Customer(int customerId, String name, String address){
+		this.customerId = customerId;
 		this.name = name;
 		this.address = address;
 	}
 
-	//Get userId
-	public int getUserId(){
-		return userId;
+	//Get customerId
+	public int getCustomerId(){
+		return customerId;
 	}
 
 	//Get name
@@ -43,7 +43,7 @@ public class Customer{
 			Statement s = conn.createStatement();
 			ResultSet rs = s.executeQuery("select * from customer");
 			while(rs.next()){
-				customerList.add(new Customer(rs.getInt("user_id"),rs.getString("name"),rs.getString("address")));
+				customerList.add(new Customer(rs.getInt("customer_id"),rs.getString("name"),rs.getString("address")));
 			}
 			rs.close();
 			s.close();
@@ -55,7 +55,7 @@ public class Customer{
 
 	//Insert given Customer into the database
 	public boolean insert(){
-		String query = "insert into customer values ( '"+userId+"', '"+name+"', '"+address+"')";
+		String query = "insert into customer values ( '"+customerId+"', '"+name+"', '"+address+"')";
 		return DBConnection.submitQueryBoolean(query);
 	}
 
