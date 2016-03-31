@@ -30,7 +30,7 @@ public class Account{
 		this.accountType = accountType;
 	}
 
-	//Insert given plan_type into the database
+	//Insert given account into the database
 	private boolean insert(){
 		String query = "insert into account values ( '"+accountId+"', '"+customerId+"', '"+planType.toString()+"', '"+accountType.toString()+"' )";
 		return DBConnection.submitQueryBoolean(query);
@@ -54,7 +54,7 @@ public class Account{
 		}
 	}
 
-	//Deletes all instances of plan in the database
+	//Deletes all instances of account in the database
 	public static void deleteAll(){
 		DBConnection.submitQueryBoolean("delete from account");
 	}
