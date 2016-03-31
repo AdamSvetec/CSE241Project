@@ -39,7 +39,7 @@ public class InternetAccess{
 		int meid;
 		Date usageTime;
 		int accessBytes;
-		for(int id = 0; id < 15; id++){
+		for(int id = 0; id < 1000; id++){
 			meid = phoneList.get(new Random().nextInt(phoneList.size())).getMeid();
 			usageTime = new Date(Math.abs(System.currentTimeMillis() - new Random().nextInt(999999999)));
 			accessBytes = new Random().nextInt(500);

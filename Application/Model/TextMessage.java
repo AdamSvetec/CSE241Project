@@ -42,7 +42,7 @@ public class TextMessage{
 		Date sendTime;
 		int messageSize;
 		String secondary_number;
-		for(int id = 0; id < 15; id++){
+		for(int id = 0; id < 750; id++){
 			meid = phoneList.get(new Random().nextInt(phoneList.size())).getMeid();
 			sendTime = new Date(Math.abs(System.currentTimeMillis() - new Random().nextInt(999999999)));
 			messageSize = new Random().nextInt(140);

@@ -68,7 +68,7 @@ public class Phone{
 		List<String> lgModelNames = Arrays.asList("Leon", "K7", "Vista");
 		Phone phone;
 		String manufacturer;
-		for(int meidCounter = 1; meidCounter < 999; meidCounter += new Random().nextInt(100)+1){
+		for(int meidCounter = 1; meidCounter < 9999; meidCounter += new Random().nextInt(100)+1){
 			manufacturer = manufacturerNames.get(new Random().nextInt(manufacturerNames.size()));
 			if(manufacturer.equals("Apple")){
 				phone = new Phone(meidCounter, manufacturer, appleModelNames.get(new Random().nextInt(appleModelNames.size())));
