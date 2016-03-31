@@ -30,10 +30,62 @@ public class Account{
 		this.accountType = accountType;
 	}
 
+	//Get accountId
+	public int getAccountId(){
+		return accountId;
+	}
+
+	//Get customerId
+	public int getCustomerId(){
+		return customerId;
+	}
+
+	//Get planType
+	public Plan.PlanType getPlanType(){
+		return planType;
+	}
+
+	//Get accountType
+	public AccountType getAccountType(){
+		return accountType;
+	}
+
 	//Insert given account into the database
 	private boolean insert(){
 		String query = "insert into account values ( '"+accountId+"', '"+customerId+"', '"+planType.toString()+"', '"+accountType.toString()+"' )";
 		return DBConnection.submitQueryBoolean(query);
+	}
+
+	//Query for all accounts in database
+	public static List<Account> queryAllAccounts(){
+		List<Account> accountList = new ArrayList<Account>();
+		Connection conn = DBConnection.getConnection();
+		try{
+			Statement s = conn.createStatement();
+			ResultSet rs = s.executeQuery("select * from account");
+			Plan.PlanType pt = Plan.PlanType.PayPerUse;
+			AccountType at = Account.AccountType.Individual;
+			while(rs.next()){
+				if(rs.getString("plan_type").equals(Plan.PlanType.PayPerUse.toString())){
+					pt = Plan.PlanType.PayPerUse;
+				}else if(rs.getString("plan_type").equals(Plan.PlanType.Unlimited.toString())){
+					pt = Plan.PlanType.Unlimited;
+				}
+				if(rs.getString("account_type").equals(AccountType.Individual.toString())){
+					at = AccountType.Individual;
+				}else if(rs.getString("account_type").equals(AccountType.Family.toString())){
+					at = AccountType.Family;
+				}else if(rs.getString("account_type").equals(AccountType.Business.toString())){
+					at = AccountType.Business;
+				}
+				accountList.add(new Account(rs.getInt("account_id"),rs.getInt("customer_id"),pt,at));
+			}
+			rs.close();
+			s.close();
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+		}
+		return accountList;
 	}
 
 	//Populates database with random data
