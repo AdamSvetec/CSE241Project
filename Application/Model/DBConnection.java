@@ -34,7 +34,7 @@ public class DBConnection{
 	//Submits a query and returns a boolean if successful
 	public static boolean submitQueryBoolean(String query){
 		try{
-			Statement s = conn.createStatement();
+			Statement s = getConnection().createStatement();
 			s.executeQuery(query);
 			s.close();
 			return true;
@@ -53,7 +53,8 @@ public class DBConnection{
 	//Close Connection
 	public static void closeConnection(){
 		try{
-			conn.close();
+			getConnection().close();
+			conn = null;
 		}catch(SQLException sqle){
 			Logger.logError(sqle.getMessage());
 		}
