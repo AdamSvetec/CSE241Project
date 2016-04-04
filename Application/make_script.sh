@@ -4,8 +4,10 @@ set -x
 
 mkdir -p Output
 
+rm Output/*.class
+
 cp -n Libraries/* Output/
 
-make clean
+javac -g -d Output -classpath ./:Output/:Model/:Misc/ JogWireless.java
 
-make
+javac -g -d Output -classpath ./:Output/:Model/:Misc/ Misc/DBPopulator.java
