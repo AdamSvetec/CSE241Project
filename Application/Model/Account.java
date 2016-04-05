@@ -92,7 +92,7 @@ public class Account{
 		Connection conn = DBConnection.getConnection();
 		try{
 			Statement s = conn.createStatement();
-			ResultSet rs = s.executeQuery("update account set customer_id = "+customerId+", plan_type = '"+planType.toString()+"', account_type = '"+accountType.toString()+"' where account_id = "+accountId);
+			ResultSet rs = s.executeQuery("update account set customer_id = '"+customerId+"', plan_type = '"+planType.toString()+"', account_type = '"+accountType.toString()+"' where account_id = "+accountId);
 			rs.close();
 			s.close();
 		}catch(SQLException sqle){

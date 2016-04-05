@@ -20,19 +20,65 @@ public class Customer{
 		this.address = address;
 	}
 
-	//Get customerId
-	public int getCustomerId(){
-		return customerId;
+	//Create given Customer
+	//Set customerId to 0 until inserted
+	public static Customer create(String name, String address){
+		return new Customer(0,name,address);
 	}
 
-	//Get name
-	public String getName(){
-		return name;
+	//Insert the given Customer into the database
+	public int insert(){
+		Connection conn = DBConnection.getConnection();
+		try{
+			Statement s = conn.createStatement();
+			ResultSet rs = s.executeQuery("select max(customer_id) as MAX from customer");
+			if(rs.next()){
+				this.customerId = rs.getInt("MAX") + 1;
+			}else{
+				this.customerId = 1;
+			}
+			rs.close();
+			s.close();
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+			return -1;
+		}
+		String query = "insert into customer values ( '"+customerId+"', '"+name+"', '"+address+"')";
+		DBConnection.submitQuery(query);
+		return this.customerId;
 	}
 
-	//Get address
-	public String getAddress(){
-		return address;
+	//Query a given Customer from the db given an id
+	public static Customer query(int id){
+		Customer customer = null;
+		Connection conn = DBConnection.getConnection();
+		try{
+			Statement s = conn.createStatement();
+			ResultSet rs = s.executeQuery("select * from customer where customer_id = " + id);
+			if(rs.next()){
+				customer = new Customer(rs.getInt("customer_id"),rs.getString("name"),rs.getString("address"));
+			}
+			rs.close();
+			s.close();
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+		}
+		return customer;
+	}
+
+	//Update a given Customer with the new values
+	public boolean update(){
+		Connection conn = DBConnection.getConnection();
+		try{
+			Statement s = conn.createStatement();
+			ResultSet rs = s.executeQuery("update customer set name = '"+name+"', address = '"+address+"' where customer_id = "+customerId);
+			rs.close();
+			s.close();
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+			return false;
+		}
+		return true;
 	}
 
 	//Query for all customers in database
@@ -53,12 +99,6 @@ public class Customer{
 		return customerList;
 	}
 
-	//Insert given Customer into the database
-	public boolean insert(){
-		String query = "insert into customer values ( '"+customerId+"', '"+name+"', '"+address+"')";
-		return DBConnection.submitQuery(query);
-	}
-
 	//Populates database with random data
 	public static void populateDB(){
 		List<String> nameList = Arrays.asList("Adam Smith", "Johnny Appleseed", "Henry Perez", "Eli Hess","Chris Park","James Cirgnano","Tom Deeble","Jeff Tilley","Spencer Lowlicht","Lance Armstrong");
@@ -73,5 +113,35 @@ public class Customer{
 	//Deletes all instances of customer in the database
 	public static void deleteAll(){
 		DBConnection.submitQuery("delete from customer");
+	}
+
+	//Delete given instance of customer in the database
+	public void delete(){
+		DBConnection.submitQuery("delete from customer where customer_id = "+customerId);
+	}
+
+	//Get customerId
+	public int getCustomerId(){
+		return customerId;
+	}
+
+	//Get name
+	public String getName(){
+		return name;
+	}
+
+	//Get address
+	public String getAddress(){
+		return address;
+	}
+
+	//Set name
+	public void setName(String name){
+		this.name = name;
+	}
+
+	//Set address
+	public void setAddress(String address){
+		this.address = address;
 	}
 }
