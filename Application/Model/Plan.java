@@ -16,6 +16,7 @@ public class Plan{
     	Unlimited
 	}
 
+	//Convert a given string into it's corresponding Plan Type
 	public static PlanType stringToPlanType(String type){
 		if(type.equals(Plan.PlanType.PayPerUse.toString())){
 			return Plan.PlanType.PayPerUse;
@@ -30,11 +31,6 @@ public class Plan{
 	//Constructor
 	private Plan(PlanType planType){
 		this.planType = planType;
-	}
-
-	//Get planType
-	public PlanType getPlanType(){
-		return planType;
 	}
 
 	//Insert given plan_type into the database
@@ -52,5 +48,10 @@ public class Plan{
 	//Deletes all instances of plan in the database
 	public static void deleteAll(){
 		DBConnection.submitQuery("delete from plan");
+	}
+
+	//Get planType
+	public PlanType getPlanType(){
+		return planType;
 	}
 }
