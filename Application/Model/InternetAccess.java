@@ -5,7 +5,11 @@ import java.util.Date;
 import java.util.Random;
 import java.util.List;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
 
 //IntenetAccess object that will be intermediary between user interface and database internet_access object
@@ -15,7 +19,6 @@ public class InternetAccess{
 	private int meid;
 	private Date usageTime;
 	private int accessBytes;
-	//private String primary_number; ?Query for this every time one is retreived?
 
 	//Constructor
 	private InternetAccess(int id, int meid, Date usageTime, int accessBytes){
@@ -25,11 +28,67 @@ public class InternetAccess{
 		this.accessBytes = accessBytes;
 	}
 
-	//Insert given InternetAccess into the database
-	public boolean insert(){
-		SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.ss");
-		String query = "insert into internet_access values ( '"+id+"', '"+meid+"', TO_TIMESTAMP ('"+dtf.format(usageTime)+"', 'YYYY-MM-DD HH24:MI:SS.FF'), '"+accessBytes+"')";
-		return DBConnection.submitQuery(query);
+	//Create new Internet access and set id to 0 until inserted
+	public static InternetAccess create(int meid, Date usageTime, int accessBytes){
+		return new InternetAccess(0, meid, usageTime, accessBytes);
+	}
+
+	//Insert given InternetAccess into the db
+	public int insert(){
+		Connection conn = DBConnection.getConnection();
+		try{
+			Statement s = conn.createStatement();
+			ResultSet rs = s.executeQuery("select max(id) as MAX from internet_access");
+			if(rs.next()){
+				this.id = rs.getInt("MAX") + 1;
+			}else{
+				this.id = 1;
+			}
+			rs.close();
+			s.close();
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+			return -1;
+		}
+		String query = "insert into internet_access values ( '"+id+"', '"+meid+"', TO_TIMESTAMP ('"+DateFormatter.toString(usageTime)+"', 'YYYY-MM-DD HH24:MI:SS.FF'), '"+accessBytes+"')";
+		DBConnection.submitQuery(query);
+		return this.id;
+	}
+
+	//Query a given InternetAccess from the db given an id
+	public static InternetAccess query(int id){
+		InternetAccess ia = null;
+		Connection conn = DBConnection.getConnection();
+		try{
+			Statement s = conn.createStatement();
+			ResultSet rs = s.executeQuery("select * from internet_access where id = " + id);
+			if(rs.next()){
+				ia = new InternetAccess(rs.getInt("id"),rs.getInt("meid"),rs.getDate("usage_time"),rs.getInt("access_bytes"));
+			}
+			rs.close();
+			s.close();
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+		}
+		return ia;
+	}
+
+	//Query for all internet_access' in database
+	public static List<InternetAccess> queryAll(){
+		List<InternetAccess> iaList = new ArrayList<InternetAccess>();
+		Connection conn = DBConnection.getConnection();
+		try{
+			Statement s = conn.createStatement();
+			ResultSet rs = s.executeQuery("select * from internet_access");
+			while(rs.next()){
+				iaList.add(new InternetAccess(rs.getInt("id"),rs.getInt("meid"),rs.getDate("usage_time"),rs.getInt("access_bytes")));
+			}
+			rs.close();
+			s.close();
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+		}
+		return iaList;
 	}
 
 	//Populates database with random data
@@ -48,8 +107,33 @@ public class InternetAccess{
 		}
 	}
 
-	//Deletes all instances of text_message in the database
+	//Deletes all instances of internet_access in the database
 	public static void deleteAll(){
 		DBConnection.submitQuery("delete from internet_access");
+	}
+
+	//Delete specific instance of internet_access from the database
+	public void delete(){
+		DBConnection.submitQuery("delete from internet_access where id = "+id);
+	}
+
+	//Get id
+	public int getId(){
+		return id;
+	}
+
+	//Get meid
+	public int getMeid(){
+		return meid;
+	}
+
+	//Get usageTime
+	public Date getUsageTime(){
+		return usageTime;
+	}
+
+	//Get accessBytes
+	public int getAccessBytes(){
+		return accessBytes;
 	}
 }
