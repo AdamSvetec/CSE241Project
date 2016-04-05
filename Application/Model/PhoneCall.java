@@ -6,7 +6,6 @@ import java.util.Random;
 import java.util.List;
 import java.util.Arrays;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 
 //PhoneCall object that will be intermediary between user interface and database phone_call object
 public class PhoneCall{
@@ -29,8 +28,7 @@ public class PhoneCall{
 
 	//Insert given phone_call into the database
 	public boolean insert(){
-		SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.ss");
-		String query = "insert into phone_call values ( '"+id+"', '"+meid+"', TO_TIMESTAMP ('"+dtf.format(startTime)+"', 'YYYY-MM-DD HH24:MI:SS.FF'), TO_TIMESTAMP ('"+dtf.format(endTime)+"', 'YYYY-MM-DD HH24:MI:SS.FF'), '"+secondary_number+"' )";
+		String query = "insert into phone_call values ( '"+id+"', '"+meid+"', TO_TIMESTAMP ('"+DateFormatter.toString(startTime)+"', 'YYYY-MM-DD HH24:MI:SS.FF'), TO_TIMESTAMP ('"+DateFormatter.toString(endTime)+"', 'YYYY-MM-DD HH24:MI:SS.FF'), '"+secondary_number+"' )";
 		return DBConnection.submitQuery(query);
 	}
 

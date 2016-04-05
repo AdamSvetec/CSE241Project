@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Connection;
-import java.text.SimpleDateFormat;
 
 //IntenetAccess object that will be intermediary between user interface and database internet_access object
 public class InternetAccess{
