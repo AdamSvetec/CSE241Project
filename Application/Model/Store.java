@@ -20,19 +20,48 @@ public class Store{
 		this.stockLimit = stockLimit;
 	}
 
-	//Get address
-	public String getAddress(){
-		return address;
+	//Create new instance of Store without inserting it into db
+	public static Store create(String address, int stockLimit){
+		return new Store(address, false, stockLimit);
 	}
 
-	//Get isOnline
-	public boolean getIsOnline(){
-		return isOnline;
+	//Insert given Store into the database
+	public boolean insert(){
+		String query = "insert into store values ( '"+address+"', '"+(isOnline ? 1 : 0)+"', '"+stockLimit+"')";
+		return DBConnection.submitQuery(query);
 	}
 
-	//Get stockLimit
-	public int getStockLimit(){
-		return stockLimit;
+	//Query Store from db given address
+	public static Store query(String address){
+		Store store = null;
+		Connection conn = DBConnection.getConnection();
+		try{
+			Statement s = conn.createStatement();
+			ResultSet rs = s.executeQuery("select * from store where address = '" + address + "'");
+			if(rs.next()){
+				store = new Store(rs.getString("address"),(rs.getInt("is_online")!=0),rs.getInt("stock_limit"));
+			}
+			rs.close();
+			s.close();
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+		}
+		return store;
+	}
+
+	//Update given Store's stock limit
+	public boolean update(){
+		Connection conn = DBConnection.getConnection();
+		try{
+			Statement s = conn.createStatement();
+			ResultSet rs = s.executeQuery("update store set stock_limit = '"+stockLimit+"' where address = '"+address+"'");
+			rs.close();
+			s.close();
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+			return false;
+		}
+		return true;
 	}
 
 	//Query for all stores in database
@@ -53,12 +82,6 @@ public class Store{
 		return storeList;
 	}
 
-	//Insert given Store into the database
-	public boolean insert(){
-		String query = "insert into store values ( '"+address+"', '"+(isOnline ? 1 : 0)+"', '"+stockLimit+"')";
-		return DBConnection.submitQuery(query);
-	}
-
 	//Populates database with random data
 	public static void populateDB(){
 		new Store("Online Store", true, 99999999).insert();
@@ -72,5 +95,30 @@ public class Store{
 	//Deletes all instances of store in the database
 	public static void deleteAll(){
 		DBConnection.submitQuery("delete from store");
+	}
+
+	//Deletes a given instance of store from the database
+	public void delete(){
+		DBConnection.submitQuery("delete from store where address = '"+address+"'");
+	}
+
+	//Get address
+	public String getAddress(){
+		return address;
+	}
+
+	//Get isOnline
+	public boolean getIsOnline(){
+		return isOnline;
+	}
+
+	//Get stockLimit
+	public int getStockLimit(){
+		return stockLimit;
+	}
+
+	//Set stockLimit
+	public void setStockLimit(int stockLimit){
+		this.stockLimit = stockLimit;
 	}
 }
