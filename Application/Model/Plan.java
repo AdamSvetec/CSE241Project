@@ -16,6 +16,15 @@ public class Plan{
     	Unlimited
 	}
 
+	public static PlanType stringToPlanType(String type){
+		if(type.equals(Plan.PlanType.PayPerUse.toString())){
+			return Plan.PlanType.PayPerUse;
+		}else if(type.equals(Plan.PlanType.Unlimited.toString())){
+			return Plan.PlanType.Unlimited;
+		}
+		return null;
+	}
+
 	private PlanType planType;
 
 	//Constructor
