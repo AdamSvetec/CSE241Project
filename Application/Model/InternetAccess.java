@@ -6,10 +6,7 @@ import java.util.Random;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Connection;
+import java.sql.*;
 
 //IntenetAccess object that will be intermediary between user interface and database internet_access object
 public class InternetAccess{
