@@ -29,7 +29,7 @@ public class InternetAccess{
 	public boolean insert(){
 		SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.ss");
 		String query = "insert into internet_access values ( '"+id+"', '"+meid+"', TO_TIMESTAMP ('"+dtf.format(usageTime)+"', 'YYYY-MM-DD HH24:MI:SS.FF'), '"+accessBytes+"')";
-		return DBConnection.submitQueryBoolean(query);
+		return DBConnection.submitQuery(query);
 	}
 
 	//Populates database with random data
@@ -50,6 +50,6 @@ public class InternetAccess{
 
 	//Deletes all instances of text_message in the database
 	public static void deleteAll(){
-		DBConnection.submitQueryBoolean("delete from internet_access");
+		DBConnection.submitQuery("delete from internet_access");
 	}
 }

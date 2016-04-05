@@ -56,7 +56,7 @@ public class Customer{
 	//Insert given Customer into the database
 	public boolean insert(){
 		String query = "insert into customer values ( '"+customerId+"', '"+name+"', '"+address+"')";
-		return DBConnection.submitQueryBoolean(query);
+		return DBConnection.submitQuery(query);
 	}
 
 	//Populates database with random data
@@ -72,6 +72,6 @@ public class Customer{
 
 	//Deletes all instances of customer in the database
 	public static void deleteAll(){
-		DBConnection.submitQueryBoolean("delete from customer");
+		DBConnection.submitQuery("delete from customer");
 	}
 }

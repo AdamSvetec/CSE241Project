@@ -31,7 +31,7 @@ public class PhoneCall{
 	public boolean insert(){
 		SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.ss");
 		String query = "insert into phone_call values ( '"+id+"', '"+meid+"', TO_TIMESTAMP ('"+dtf.format(startTime)+"', 'YYYY-MM-DD HH24:MI:SS.FF'), TO_TIMESTAMP ('"+dtf.format(endTime)+"', 'YYYY-MM-DD HH24:MI:SS.FF'), '"+secondary_number+"' )";
-		return DBConnection.submitQueryBoolean(query);
+		return DBConnection.submitQuery(query);
 	}
 
 	//Populates database with random data
@@ -54,6 +54,6 @@ public class PhoneCall{
 
 	//Deletes all instances of phone_call in the database
 	public static void deleteAll(){
-		DBConnection.submitQueryBoolean("delete from phone_call");
+		DBConnection.submitQuery("delete from phone_call");
 	}
 }

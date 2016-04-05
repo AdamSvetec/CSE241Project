@@ -56,7 +56,7 @@ public class Store{
 	//Insert given Store into the database
 	public boolean insert(){
 		String query = "insert into store values ( '"+address+"', '"+(isOnline ? 1 : 0)+"', '"+stockLimit+"')";
-		return DBConnection.submitQueryBoolean(query);
+		return DBConnection.submitQuery(query);
 	}
 
 	//Populates database with random data
@@ -71,6 +71,6 @@ public class Store{
 
 	//Deletes all instances of store in the database
 	public static void deleteAll(){
-		DBConnection.submitQueryBoolean("delete from store");
+		DBConnection.submitQuery("delete from store");
 	}
 }

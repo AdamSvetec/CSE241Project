@@ -40,7 +40,7 @@ public class Plan{
 	//Insert given plan_type into the database
 	private boolean insert(){
 		String query = "insert into plan values ( '"+planType.toString()+"' )";
-		return DBConnection.submitQueryBoolean(query);
+		return DBConnection.submitQuery(query);
 	}
 
 	//Populates database with random data
@@ -51,6 +51,6 @@ public class Plan{
 
 	//Deletes all instances of plan in the database
 	public static void deleteAll(){
-		DBConnection.submitQueryBoolean("delete from plan");
+		DBConnection.submitQuery("delete from plan");
 	}
 }

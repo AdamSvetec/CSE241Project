@@ -39,7 +39,7 @@ public class Phone{
 	//Insert given phone into the database
 	public boolean insert(){
 		String query = "insert into phone values ( '"+meid+"', '"+manufacturer+"', '"+phoneModel+"' )";
-		return DBConnection.submitQueryBoolean(query);
+		return DBConnection.submitQuery(query);
 	}
 
 	//Query for all phones in database
@@ -85,6 +85,6 @@ public class Phone{
 
 	//Deletes all instances of phone in the database
 	public static void deleteAll(){
-		DBConnection.submitQueryBoolean("delete from phone");
+		DBConnection.submitQuery("delete from phone");
 	}
 }

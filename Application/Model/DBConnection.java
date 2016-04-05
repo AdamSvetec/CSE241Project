@@ -32,7 +32,7 @@ public class DBConnection{
 	}
 
 	//Submits a query and returns a boolean if successful
-	public static boolean submitQueryBoolean(String query){
+	public static boolean submitQuery(String query){
 		try{
 			Statement s = getConnection().createStatement();
 			s.executeQuery(query);

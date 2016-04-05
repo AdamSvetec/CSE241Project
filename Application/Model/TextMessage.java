@@ -31,7 +31,7 @@ public class TextMessage{
 	public boolean insert(){
 		SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.ss");
 		String query = "insert into text_message values ( '"+id+"', '"+meid+"', TO_TIMESTAMP ('"+dtf.format(sendTime)+"', 'YYYY-MM-DD HH24:MI:SS.FF'), '"+messageSize+"', '"+secondary_number+"' )";
-		return DBConnection.submitQueryBoolean(query);
+		return DBConnection.submitQuery(query);
 	}
 
 	//Populates database with random data
@@ -54,6 +54,6 @@ public class TextMessage{
 
 	//Deletes all instances of text_message in the database
 	public static void deleteAll(){
-		DBConnection.submitQueryBoolean("delete from text_message");
+		DBConnection.submitQuery("delete from text_message");
 	}
 }

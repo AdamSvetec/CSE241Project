@@ -26,7 +26,7 @@ public class PhoneNumber{
 	//Insert given phone_number into the database
 	public boolean insert(){
 		String query = "insert into phone_number values ( '"+phoneNumber+"', '"+(isPrimary ? 1 : 0)+"', '"+accountId+"', '"+meid+"' )";
-		return DBConnection.submitQueryBoolean(query);
+		return DBConnection.submitQuery(query);
 	}
 
 	//Populates database with random data
@@ -52,6 +52,6 @@ public class PhoneNumber{
 
 	//Deletes all instances of phone_number in the database
 	public static void deleteAll(){
-		DBConnection.submitQueryBoolean("delete from phone_number");
+		DBConnection.submitQuery("delete from phone_number");
 	}
 }

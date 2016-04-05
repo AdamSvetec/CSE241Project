@@ -65,7 +65,7 @@ public class Account{
 			return -1;
 		}
 		String query = "insert into account values ( '"+accountId+"', '"+customerId+"', '"+planType.toString()+"', '"+accountType.toString()+"' )";
-		DBConnection.submitQueryBoolean(query);
+		DBConnection.submitQuery(query);
 		return this.accountId;
 	}
 
@@ -144,12 +144,12 @@ public class Account{
 
 	//Delete account from db with given account_id
 	public void delete(){
-		DBConnection.submitQueryBoolean("delete from account where account_id = "+accountId);
+		DBConnection.submitQuery("delete from account where account_id = "+accountId);
 	}
 
 	//Deletes all instances of account in the database
 	public static void deleteAll(){
-		DBConnection.submitQueryBoolean("delete from account");
+		DBConnection.submitQuery("delete from account");
 	}
 
 	//Get accountId
