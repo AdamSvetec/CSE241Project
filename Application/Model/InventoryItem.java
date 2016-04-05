@@ -65,9 +65,9 @@ public class InventoryItem{
 
 	//Populates database with random data
 	public static void populateDB(){
-		List<Phone> phoneList = Phone.queryAllPhones();
+		List<Phone> phoneList = Phone.queryAll();
 		Phone currentPhone;
-		List<Store> storeList = Store.queryAllStores();
+		List<Store> storeList = Store.queryAll();
 		Store currentStore;
 		InventoryItem item;
 		for(int counter = 1; counter < phoneList.size()*0.8; counter++){

@@ -65,7 +65,7 @@ public class Store{
 	}
 
 	//Query for all stores in database
-	public static List<Store> queryAllStores(){
+	public static List<Store> queryAll(){
 		List<Store> storeList = new ArrayList<Store>();
 		Connection conn = DBConnection.getConnection();
 		try{

@@ -103,7 +103,7 @@ public class Account{
 	}
 
 	//Query for all accounts in database
-	public static List<Account> queryAllAccounts(){
+	public static List<Account> queryAll(){
 		List<Account> accountList = new ArrayList<Account>();
 		Connection conn = DBConnection.getConnection();
 		try{
@@ -126,7 +126,7 @@ public class Account{
 
 	//Populates database with random data
 	public static void populateDB(){
-		List<Customer> customerList = Customer.queryAllCustomers();
+		List<Customer> customerList = Customer.queryAll();
 		List<Plan.PlanType> planTypeList = Arrays.asList(Plan.PlanType.PayPerUse, Plan.PlanType.Unlimited);
 		List<AccountType> accountTypeList = Arrays.asList(AccountType.Individual, AccountType.Family, AccountType.Business);
 		Account account;

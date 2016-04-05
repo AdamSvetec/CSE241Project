@@ -54,7 +54,7 @@ public class TextMessage{
 
 	//Populates database with random data
 	public static void populateDB(){
-		List<Phone> phoneList = Phone.queryAllPhones();
+		List<Phone> phoneList = Phone.queryAll();
 		TextMessage textMessage;
 		int meid;
 		Date sendTime;

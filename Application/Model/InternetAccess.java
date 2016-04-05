@@ -89,7 +89,7 @@ public class InternetAccess{
 
 	//Populates database with random data
 	public static void populateDB(){
-		List<Phone> phoneList = Phone.queryAllPhones();
+		List<Phone> phoneList = Phone.queryAll();
 		InternetAccess ia;
 		int meid;
 		Date usageTime;

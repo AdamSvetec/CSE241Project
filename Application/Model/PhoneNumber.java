@@ -89,8 +89,8 @@ public class PhoneNumber{
 	//Populates database with random data
 	//Needs to be edited so there is only one primary per account
 	public static void populateDB(){
-		List<Phone> phoneList = Phone.queryAllPhones();
-		List<Account> accountList = Account.queryAllAccounts();
+		List<Phone> phoneList = Phone.queryAll();
+		List<Account> accountList = Account.queryAll();
 		PhoneNumber phoneNum;
 		String currentPhoneNumber;
 		boolean isPrimary;

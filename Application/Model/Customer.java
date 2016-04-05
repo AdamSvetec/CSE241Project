@@ -82,7 +82,7 @@ public class Customer{
 	}
 
 	//Query for all customers in database
-	public static List<Customer> queryAllCustomers(){
+	public static List<Customer> queryAll(){
 		List<Customer> customerList = new ArrayList<Customer>();
 		Connection conn = DBConnection.getConnection();
 		try{

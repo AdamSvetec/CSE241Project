@@ -54,7 +54,7 @@ public class PhoneCall{
 
 	//Populates database with random data
 	public static void populateDB(){
-		List<Phone> phoneList = Phone.queryAllPhones();
+		List<Phone> phoneList = Phone.queryAll();
 		PhoneCall phoneCall;
 		int meid;
 		Date startTime;

@@ -51,7 +51,7 @@ public class Phone{
 	}
 
 	//Query for all phones in database
-	public static List<Phone> queryAllPhones(){
+	public static List<Phone> queryAll(){
 		List<Phone> phoneList = new ArrayList<Phone>();
 		Connection conn = DBConnection.getConnection();
 		try{
