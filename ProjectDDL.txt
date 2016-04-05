@@ -61,7 +61,7 @@ CREATE TABLE inventory_item
 (
 meid numeric(8),
 address varchar(60),
-primary key(meid, address),
+primary key(meid),
 foreign key(meid) references phone,
 foreign key(address) references store
 );
