@@ -19,20 +19,48 @@ public class InventoryItem{
 		this.address = address;
 	}
 
-	//Get meid
-	public int getMeid(){
-		return meid;
-	}
-
-	//Get address
-	public String getAddress(){
-		return address;
+	//Create new InventoryItem not yet added to the database
+	public static InventoryItem create(int meid, String address){
+		return new InventoryItem(meid, address);
 	}
 
 	//Insert given InventoryItem into the database
 	public boolean insert(){
 		String query = "insert into inventory_item values ( '"+meid+"', '"+address+"' )";
 		return DBConnection.submitQuery(query);
+	}
+
+	//Query db for given instance of inventory_item
+	public static InventoryItem query(int meid){
+		InventoryItem item = null;
+		Connection conn = DBConnection.getConnection();
+		try{
+			Statement s = conn.createStatement();
+			ResultSet rs = s.executeQuery("select * from inventory_item where meid = "+meid);
+			if(rs.next()){
+				item = new InventoryItem(rs.getInt("meid"),rs.getString("address"));
+			}
+			rs.close();
+			s.close();
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+		}
+		return item;
+	}
+
+	//Update the given inventory_item in the database with new address
+	public boolean update(){
+		Connection conn = DBConnection.getConnection();
+		try{
+			Statement s = conn.createStatement();
+			ResultSet rs = s.executeQuery("update inventory_item set address = '"+address+"' where meid = "+meid);;
+			rs.close();
+			s.close();
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+			return false;
+		}
+		return true;
 	}
 
 	//Populates database with random data
@@ -54,5 +82,20 @@ public class InventoryItem{
 	//Deletes all instances of inventory_item in the database
 	public static void deleteAll(){
 		DBConnection.submitQuery("delete from inventory_item");
+	}
+
+	//Delete given instance of inventory_item from the database
+	public void delete(){
+		DBConnection.submitQuery("delete from inventory_item where meid = "+meid);
+	}
+
+	//Get meid
+	public int getMeid(){
+		return meid;
+	}
+
+	//Get address
+	public String getAddress(){
+		return address;
 	}
 }
