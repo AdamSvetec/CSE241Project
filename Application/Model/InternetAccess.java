@@ -49,7 +49,7 @@ public class InternetAccess{
 			Logger.logError(sqle.getMessage());
 			return -1;
 		}
-		String query = "insert into internet_access values ( '"+id+"', '"+meid+"', TO_TIMESTAMP ('"+DateFormatter.toString(usageTime)+"', 'YYYY-MM-DD HH24:MI:SS.FF'), '"+accessBytes+"')";
+		String query = "insert into internet_access values ( '"+id+"', '"+meid+"', "+DateFormatter.toString(usageTime)+", '"+accessBytes+"')";
 		DBConnection.submitQuery(query);
 		return this.id;
 	}

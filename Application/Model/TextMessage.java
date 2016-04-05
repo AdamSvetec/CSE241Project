@@ -28,7 +28,7 @@ public class TextMessage{
 
 	//Insert given text_message into the database
 	public boolean insert(){
-		String query = "insert into text_message values ( '"+id+"', '"+meid+"', TO_TIMESTAMP ('"+DateFormatter.toString(sendTime)+"', 'YYYY-MM-DD HH24:MI:SS.FF'), '"+messageSize+"', '"+secondary_number+"' )";
+		String query = "insert into text_message values ( '"+id+"', '"+meid+"', "+DateFormatter.toString(sendTime)+", '"+messageSize+"', '"+secondary_number+"' )";
 		return DBConnection.submitQuery(query);
 	}
 

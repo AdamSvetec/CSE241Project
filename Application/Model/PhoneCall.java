@@ -28,7 +28,7 @@ public class PhoneCall{
 
 	//Insert given phone_call into the database
 	public boolean insert(){
-		String query = "insert into phone_call values ( '"+id+"', '"+meid+"', TO_TIMESTAMP ('"+DateFormatter.toString(startTime)+"', 'YYYY-MM-DD HH24:MI:SS.FF'), TO_TIMESTAMP ('"+DateFormatter.toString(endTime)+"', 'YYYY-MM-DD HH24:MI:SS.FF'), '"+secondary_number+"' )";
+		String query = "insert into phone_call values ( '"+id+"', '"+meid+"', "+DateFormatter.toString(startTime)+", "+DateFormatter.toString(endTime)+", '"+secondary_number+"' )";
 		return DBConnection.submitQuery(query);
 	}
 

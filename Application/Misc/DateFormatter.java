@@ -11,6 +11,6 @@ public class DateFormatter{
 
 	//Converts a date into the given format
 	public static String toString(Date date){
-		return sdf.format(date);
+		return "TO_TIMESTAMP ('"+sdf.format(date)+"', 'YYYY-MM-DD HH24:MI:SS.FF')";
 	}
 }
