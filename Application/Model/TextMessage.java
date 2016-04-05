@@ -25,9 +25,9 @@ public class TextMessage{
 		this.secondaryNumber = secondaryNumber;
 	}
 
-	//Create an instance of TextMessage without inserting it, will set id to 0 until inserted
+	//Create an instance of TextMessage without inserting it, will set id to -1 until inserted
 	public static TextMessage create(int meid, Date sendTime, int messageSize, String secondaryNumber){
-		return new TextMessage(0, meid, sendTime, messageSize, secondaryNumber);
+		return new TextMessage(-1, meid, sendTime, messageSize, secondaryNumber);
 	}
 
 	//Insert given text_message into the database
@@ -48,7 +48,9 @@ public class TextMessage{
 			return -1;
 		}
 		String query = "insert into text_message values ( '"+id+"', '"+meid+"', "+DateFormatter.toString(sendTime)+", '"+messageSize+"', '"+secondaryNumber+"' )";
-		DBConnection.submitQuery(query);
+		if(!DBConnection.submitQuery(query)){
+			this.id = -1;
+		}
 		return this.id;
 	}
 

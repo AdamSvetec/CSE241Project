@@ -42,9 +42,9 @@ public class Account{
 		this.accountType = accountType;
 	}
 
-	//Create new Account, id is set to 0 until it is inserted
+	//Create new Account, id is set to -1 until it is inserted
 	public static Account create(int customerId, Plan.PlanType planType, AccountType accountType){
-		return new Account(0, customerId, planType, accountType);
+		return new Account(-1, customerId, planType, accountType);
 	}
 
 	//Insert given account into the database

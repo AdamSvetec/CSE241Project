@@ -25,9 +25,9 @@ public class PhoneCall{
 		this.secondaryNumber = secondaryNumber;
 	}
 
-	//Create instance of PhoneCall without inserting it, set id to 0 until inserted
+	//Create instance of PhoneCall without inserting it, set id to -1 until inserted
 	public static PhoneCall create(int meid, Date startTime, Date endTime, String secondaryNumber){
-		return new PhoneCall(0, meid, startTime, endTime, secondaryNumber);
+		return new PhoneCall(-1, meid, startTime, endTime, secondaryNumber);
 	}
 
 	//Insert given phone_call into the database

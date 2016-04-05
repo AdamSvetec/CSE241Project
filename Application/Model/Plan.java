@@ -18,10 +18,10 @@ public class Plan{
 
 	//Convert a given string into it's corresponding Plan Type
 	public static PlanType stringToPlanType(String type){
-		if(type.equals(Plan.PlanType.PayPerUse.toString())){
-			return Plan.PlanType.PayPerUse;
-		}else if(type.equals(Plan.PlanType.Unlimited.toString())){
-			return Plan.PlanType.Unlimited;
+		if(type.equals(PlanType.PayPerUse.toString())){
+			return PlanType.PayPerUse;
+		}else if(type.equals(PlanType.Unlimited.toString())){
+			return PlanType.Unlimited;
 		}
 		return null;
 	}

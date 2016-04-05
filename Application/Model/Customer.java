@@ -21,9 +21,9 @@ public class Customer{
 	}
 
 	//Create given Customer
-	//Set customerId to 0 until inserted
+	//Set customerId to -1 until inserted
 	public static Customer create(String name, String address){
-		return new Customer(0,name,address);
+		return new Customer(-1,name,address);
 	}
 
 	//Insert the given Customer into the database

@@ -24,9 +24,9 @@ public class InternetAccess{
 		this.accessBytes = accessBytes;
 	}
 
-	//Create new Internet access and set id to 0 until inserted
+	//Create new Internet access and set id to -1 until inserted
 	public static InternetAccess create(int meid, Date usageTime, int accessBytes){
-		return new InternetAccess(0, meid, usageTime, accessBytes);
+		return new InternetAccess(-1, meid, usageTime, accessBytes);
 	}
 
 	//Insert given InternetAccess into the db
