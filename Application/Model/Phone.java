@@ -21,25 +21,33 @@ public class Phone{
 		this.phoneModel = phoneModel;
 	}
 
-	//Get meid
-	public int getMeid(){
-		return meid;
-	}
-
-	//Get manufacturer
-	public String getManufacturer(){
-		return manufacturer;
-	}
-
-	//Get model
-	public String getModel(){
-		return phoneModel;
+	//Create instance of Phone
+	public static Phone create(int meid, String manufacturer, String phoneModel){
+		return new Phone(meid, manufacturer, phoneModel);
 	}
 
 	//Insert given phone into the database
 	public boolean insert(){
 		String query = "insert into phone values ( '"+meid+"', '"+manufacturer+"', '"+phoneModel+"' )";
 		return DBConnection.submitQuery(query);
+	}
+
+	//Query phone given an meid
+	public static Phone query(int meid){
+		Phone phone = null;
+		Connection conn = DBConnection.getConnection();
+		try{
+			Statement s = conn.createStatement();
+			ResultSet rs = s.executeQuery("select * from phone where meid = " + meid);
+			if(rs.next()){
+				phone = new Phone(rs.getInt("meid"),rs.getString("manufacturer"),rs.getString("phone_model"));
+			}
+			rs.close();
+			s.close();
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+		}
+		return phone;
 	}
 
 	//Query for all phones in database
@@ -86,5 +94,25 @@ public class Phone{
 	//Deletes all instances of phone in the database
 	public static void deleteAll(){
 		DBConnection.submitQuery("delete from phone");
+	}
+
+	//Deletes the instance of the phone in the db
+	public void delete(){
+		DBConnection.submitQuery("delete from phone where meid = "+meid);
+	}
+
+	//Get meid
+	public int getMeid(){
+		return meid;
+	}
+
+	//Get manufacturer
+	public String getManufacturer(){
+		return manufacturer;
+	}
+
+	//Get model
+	public String getModel(){
+		return phoneModel;
 	}
 }
