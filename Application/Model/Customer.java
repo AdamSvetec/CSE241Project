@@ -44,7 +44,9 @@ public class Customer{
 			return -1;
 		}
 		String query = "insert into customer values ( '"+customerId+"', '"+name+"', '"+address+"')";
-		DBConnection.submitQuery(query);
+		if(!DBConnection.submitQuery(query)){
+			this.customerId = -1;
+		}
 		return this.customerId;
 	}
 

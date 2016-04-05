@@ -48,7 +48,9 @@ public class PhoneCall{
 			return -1;
 		}
 		String query = "insert into phone_call values ( '"+id+"', '"+meid+"', "+DateFormatter.toString(startTime)+", "+DateFormatter.toString(endTime)+", '"+secondaryNumber+"' )";
-		DBConnection.submitQuery(query);
+		if(!DBConnection.submitQuery(query)){
+			this.id = -1;
+		}
 		return this.id;
 	}
 

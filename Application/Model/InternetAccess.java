@@ -47,7 +47,9 @@ public class InternetAccess{
 			return -1;
 		}
 		String query = "insert into internet_access values ( '"+id+"', '"+meid+"', "+DateFormatter.toString(usageTime)+", '"+accessBytes+"')";
-		DBConnection.submitQuery(query);
+		if(DBConnection.submitQuery(query)){
+			this.id = -1;
+		}
 		return this.id;
 	}
 

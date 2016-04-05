@@ -65,7 +65,9 @@ public class Account{
 			return -1;
 		}
 		String query = "insert into account values ( '"+accountId+"', '"+customerId+"', '"+planType.toString()+"', '"+accountType.toString()+"' )";
-		DBConnection.submitQuery(query);
+		if(!DBConnection.submitQuery(query)){
+			this.accountId = -1;
+		}
 		return this.accountId;
 	}
 
