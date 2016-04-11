@@ -26,6 +26,7 @@ public class LoginView{
         fl = new FlowLayout(FlowLayout.CENTER);
         usernameLabel = new JLabel("Enter Username: ");
         usernameField = new JTextField(10);
+        usernameField.setText("ajs217");
         passwordLabel = new JLabel("Enter Password: ");
         passwordField = new JPasswordField(12);
         loginButton = new JButton("Login");
