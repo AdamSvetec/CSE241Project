@@ -8,6 +8,6 @@ rm Output/*.class
 
 cp -n Libraries/* Output/
 
-javac -g -d Output -classpath ./:Output/:Model/:Misc/ JogWireless.java
+javac -g -d Output -classpath ./:Output/:Model/:Controllers/:Views/:Misc/ JogWireless.java
 
-javac -g -d Output -classpath ./:Output/:Model/:Misc/ Misc/DBPopulator.java
+javac -g -d Output -classpath ./:Output/:Model/:Controllers/:Views/:Misc/ Misc/DBPopulator.java
