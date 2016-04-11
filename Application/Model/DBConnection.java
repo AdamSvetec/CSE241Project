@@ -44,6 +44,9 @@ public class DBConnection{
 
 	//Close Connection
 	public static void closeConnection(){
+		if(conn == null){
+			return;
+		}
 		try{
 			getConnection().close();
 			conn = null;
