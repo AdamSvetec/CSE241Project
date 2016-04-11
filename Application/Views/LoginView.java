@@ -1,6 +1,8 @@
+//Adam Svetec
+//CSE241
+
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
 import java.awt.event.ActionListener;
 
 public class LoginView{

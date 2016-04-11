@@ -3,7 +3,7 @@
 
 public class UsageReaderController{
 
-	public UsageReaderController{
+	public UsageReaderController(){
 		
 	}
 }

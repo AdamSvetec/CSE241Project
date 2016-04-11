@@ -1,9 +1,6 @@
 //Adam Svetec
 //CSE241
 
-import javax.swing.*;
-import java.awt.*;
-import java.util.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -30,7 +27,7 @@ public class LoginController implements ActionListener{
   		String username = view.getUserName();
 		String password = view.getPassword();
 		if(DBConnection.validate(username, password)){
-			//InterfaceSelecterController.create();
+			new InterfaceSelectController();
         	view.closeFrame();
 		}else{
 			//Add pop up frame or something similar
