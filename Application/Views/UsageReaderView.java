@@ -13,6 +13,7 @@ public class UsageReaderView{
     private FlowLayout fl;
     private JLabel prompt;
     private JButton openFileChooser;
+    private JButton exitButton;
     private JFileChooser fileChooser;
     
     //Constructor
@@ -24,10 +25,12 @@ public class UsageReaderView{
 
         prompt = new JLabel("Please choose csv file to read usage entries:");
         openFileChooser = new JButton("Choose File");
+        exitButton = new JButton("Exit");
         fileChooser = new JFileChooser();
 
         p.add(prompt);
         p.add(openFileChooser);
+        p.add(exitButton);
 
         f.setSize(300,300);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,6 +42,7 @@ public class UsageReaderView{
     //Adds action listener to loginButton
     public void addController(ActionListener controller){
     	openFileChooser.addActionListener(controller);
+        exitButton.addActionListener(controller);
     }
 
     //Opens the file chooser
