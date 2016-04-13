@@ -19,11 +19,6 @@ public class LoginView{
     //Constructor
     public LoginView(){
         this.f = new JFrame("Login");
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int height = screenSize.height;
-        int width = screenSize.width;
-        f.setSize((width/2) - 600, (height/2) - 250);
-        f.setLocationRelativeTo(null);
         p = new JPanel();
         fl = new FlowLayout(FlowLayout.CENTER);
         usernameLabel = new JLabel("Enter Username: ");
@@ -43,6 +38,7 @@ public class LoginView{
         f.setSize(200,200);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setContentPane(p);
+        f.setLocationRelativeTo(null);
         f.setVisible(true);
         f.getRootPane().setDefaultButton(loginButton); //Allows user to hit enter button to login
     }
