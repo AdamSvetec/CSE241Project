@@ -1,0 +1,24 @@
+error
+
+text message, meid, sendtime (MM/dd/yyyy HH24:mm:ss), message size (int), secondary number (1234567890)
+text message, 103, 05/18/1995 18:24:08, 40, 1234567890
+text message, error, 05/18/1995 18:24:08, 40, 1234567890
+text message, 103, error, 40, 1234567890
+text message, 103, 05/18/1995 18:24:08, error, 1234567890
+text message, 103, 05/18/1995 18:24:08, 40, error
+text message, 99, 05/18/1995 18:24:08, 40, 1234567890 
+
+phone call, meid, startTime (MM/dd/yyyy HH24:mm:ss), endTime (MM/dd/yyyy HH24:mm:ss), secondary number (1234567890)
+phone call, 103, 05/18/1995 18:24:08, 05/18/1995 18:25:00, 1234567890
+phone call, error, 05/18/1995 18:24:08, 05/18/1995 18:25:00, 1234567890
+phone call, 103, error, 05/18/1995 18:25:00, 1234567890
+phone call, 103, 05/18/1995 18:24:08, error, 1234567890
+phone call, 103, 05/18/1995 18:24:08, 05/18/1995 18:25:00, error
+phone call, 99, 05/18/1995 18:24:08, 05/18/1995 18:25:00, 1234567890
+
+internet access, meid, usageTime (MM/dd/yyyy HH24:mm:ss), access bytes (int)
+internet access, 103, 05/18/1995 18:24:08, 50
+internet access, error, 05/18/1995 18:24:08, 50
+internet access, 103, error, 50
+internet access, 103, 05/18/1995 18:24:08, error
+internet access, 99, 05/18/1995 18:24:08, 50
