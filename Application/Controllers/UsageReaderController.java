@@ -1,36 +1,34 @@
 //Adam Svetec
 //CSE241
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class UsageReaderController implements ActionListener{
-
-	private UsageReaderView view;
-
-	//Routes the actions performed in the view to their respective actions in the controller
-    public void actionPerformed(ActionEvent ac){
-    	if(ac.getActionCommand().equals("Choose File")){
-    		File file = view.openFileChooser();
-    		parseFile(file);
-		}else if(ac.getActionCommand().equals("Exit")){
-			new InterfaceSelectController();
-			view.closeFrame();
-		}
-	}
+public class UsageReaderController{
 
 	//Constructor
 	public UsageReaderController(){
-		view = new UsageReaderView();
-		view.addController(this);
+		FileInputStream file = getFileToParse();
+		parseFile(file);
+		new InterfaceSelectController();
+	}
+
+	//Gets the file to parse for reader
+	private FileInputStream getFileToParse(){
+		do{
+			try{
+				String pathname = CommandLineView.getString("Please enter file path to be imported: ");
+				return new FileInputStream(pathname);
+			}catch(FileNotFoundException fnfe){
+				System.out.println("Error: file path not found.");
+			}
+		}while(true);
 	}
 
 	//Parse the selected file
-	private void parseFile(File file){
+	private void parseFile(FileInputStream file){
 		String output = new UsageImporter().importUsageFile(file);
-		new OutputView(output, "Usage Import");
+		System.out.print(output);
 	}		
 }

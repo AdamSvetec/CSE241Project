@@ -23,19 +23,19 @@ public class UsageImporter{
 
 	//Import a usage file
 	//Needs to be refactored
-	public String importUsageFile(File file){
+	public String importUsageFile(FileInputStream file){
 		
 		if(file == null){
 			outputString.append("Error reading file.\nPlease ensure file is not opened elsewhere");
 			return outputString.toString();
 		}
 		
-		outputString.append("Reading from file: "+file.getName()+"\n\n");
+		outputString.append("Reading from file:\n\n");
 
 		FileReader input = null;
 		try{
-			input = new FileReader(file);
-		}catch(FileNotFoundException fnfe){
+			input = new FileReader(file.getFD());
+		}catch(IOException ioe){
 			outputString.append("Error reading file.\nPlease ensure file is not opened elsewhere");
 			return outputString.toString();
 		}
