@@ -1,37 +1,24 @@
 //Adam Svetec
 //CSE241
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-
-public class LoginController implements ActionListener{
-
-	private LoginView view;
-
-	//Routes the actions performed in the view to their respective actions in the controller
-    public void actionPerformed(ActionEvent ac){
-    	if(ac.getActionCommand().equals("Login")){
-			login();
-    	}
-	}
+public class LoginController{
 
 	//Constuctor
 	public LoginController(){
-		view = new LoginView();
-		view.addController(this);
+		login();
     }
 
   	//Attempt to login user into the application
   	private void login(){
-  		String username = view.getUserName();
-		String password = view.getPassword();
-		if(DBConnection.validate(username, password)){
-			new InterfaceSelectController();
-        	view.closeFrame();
-		}else{
-			//Add pop up frame or something similar
-			Logger.logError("Invalid Login Credentials");
-		}
+ 		do{
+  			String username = CommandLineView.getString("Please enter username: ");
+			String password = CommandLineView.getString("Please enter password: ");
+			if(DBConnection.validate(username, password)){
+				new InterfaceSelectController();
+				return;
+			}else{
+				System.out.println("Error: username/password invalid");
+			}
+		}while(true);
   	}
 }
