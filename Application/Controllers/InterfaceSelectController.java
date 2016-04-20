@@ -1,30 +1,27 @@
 //Adam Svetec
 //CSE241
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class InterfaceSelectController implements ActionListener{
-
-	private InterfaceSelectView view;
-
-	//Routes the actions performed in the view to their respective actions in the controller
-    public void actionPerformed(ActionEvent ac){
-    	if(ac.getActionCommand().equals("Interactive Interface")){
-			//new UsageReaderController();
-			//view.closeFrame();
-    	}else if(ac.getActionCommand().equals("Stream Input")){
-			new UsageReaderController();
-			view.closeFrame();
-		}else if(ac.getActionCommand().equals("Reporting System")){
-			//new UsageReaderController();
-			//view.closeFrame();
-		}
-	}
-
+public class InterfaceSelectController{
 	//Constuctor
 	public InterfaceSelectController(){
-		view = new InterfaceSelectView();
-		view.addController(this);
+		selectInterface();
+    }
+
+    //Gets the user to select the interface they would like to use
+    public void selectInterface(){
+    	String interfaceString = CommandLineView.getString("Please enter interface you would like to use: \n\tinteractive, stream, or reporting\n");
+    	while(true){
+    		if(interfaceString.equals("interactive")){
+    			//new InteractiveController();
+    		}else if(interfaceString.equals("stream")){
+    			new UsageReaderController();
+    		}else if(interfaceString.equals("reporting")){
+    			//new ReportingController();
+    		}else{
+    			interfaceString = CommandLineView.getString("Did not recognize selection.\nPlease enter interface you would like to use:\n\tinteractive, stream, or reporting\n");
+    			continue;
+    		}
+    		return;
+    	}
     }
 }
