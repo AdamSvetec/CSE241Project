@@ -11,7 +11,7 @@ public class CommandLineView{
 	public static String getString(String prompt){
 		System.out.print(prompt);
 		Scanner scanner = new Scanner(System.in);
-		return scanner.next();
+		return scanner.nextLine();
 	}
 
 	//Get int from user at command line given prompt
