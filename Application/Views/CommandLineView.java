@@ -43,4 +43,38 @@ public class CommandLineView{
 			}
 		}while(true);
 	}
+
+	//Get account type from user at command line given prompt
+	public static Account.AccountType getAccountType(String prompt){
+		Scanner scanner = new Scanner(System.in);
+		String accountTypeString;
+		do{
+			System.out.println(prompt);
+			System.out.println("\t("+Account.AccountType.Individual+", "+Account.AccountType.Family+", or "+Account.AccountType.Business+")");
+			accountTypeString = scanner.nextLine();
+			Account.AccountType at = Account.stringToAccountType(accountTypeString);
+			if(null != at){
+				return at;
+			}else{
+				System.out.println("Incorrect format");
+			}
+		}while(true);
+	}
+
+	//Get plan type from user at command line given prompt
+	public static Plan.PlanType getPlanType(String prompt){
+		Scanner scanner = new Scanner(System.in);
+		String planTypeString;
+		do{
+			System.out.println(prompt);
+			System.out.println("\t("+Plan.PlanType.PayPerUse+", or "+Plan.PlanType.Unlimited+")");
+			planTypeString = scanner.nextLine();
+			Plan.PlanType pt = Plan.stringToPlanType(planTypeString);
+			if(null != pt){
+				return pt;
+			}else{
+				System.out.println("Incorrect format");
+			}
+		}while(true);
+	}
 }
