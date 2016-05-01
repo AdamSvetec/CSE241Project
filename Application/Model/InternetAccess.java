@@ -2,6 +2,7 @@
 //CSE 241
 
 import java.util.Date;
+import java.util.Calendar;
 import java.util.Random;
 import java.util.List;
 import java.util.Arrays;
@@ -98,7 +99,7 @@ public class InternetAccess{
 		int accessBytes;
 		for(int id = 0; id < 1000; id++){
 			meid = phoneList.get(new Random().nextInt(phoneList.size())).getMeid();
-			usageTime = new Date(Math.abs(System.currentTimeMillis() - new Random().nextInt(999999999)));
+			usageTime = DateFormatter.getRandomDate();
 			accessBytes = new Random().nextInt(500);
 			ia = new InternetAccess(id, meid, usageTime, accessBytes);
 			ia.insert();

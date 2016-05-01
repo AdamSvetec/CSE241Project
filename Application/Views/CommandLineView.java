@@ -3,6 +3,8 @@
 
 import java.util.Scanner;
 
+//Methods are used to ensure the data type entered is valid
+//Actual domain logic restrictions should be checked by the controller
 public class CommandLineView{
 
 	//Get string from user at command line given prompt

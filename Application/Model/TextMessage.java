@@ -64,7 +64,7 @@ public class TextMessage{
 		String secondaryNumber;
 		for(int id = 0; id < 750; id++){
 			meid = phoneList.get(new Random().nextInt(phoneList.size())).getMeid();
-			sendTime = new Date(Math.abs(System.currentTimeMillis() - new Random().nextInt(999999999)));
+			sendTime = DateFormatter.getRandomDate();
 			messageSize = new Random().nextInt(140);
 			secondaryNumber = Integer.toOctalString(new Random().nextInt(600) + 100) +""+(new Random().nextInt(641) + 100)+""+(new Random().nextInt(8999) + 1000);
 			textMessage = new TextMessage(id, meid, sendTime, messageSize, secondaryNumber);
