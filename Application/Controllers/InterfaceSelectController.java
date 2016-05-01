@@ -12,7 +12,7 @@ public class InterfaceSelectController{
     	String interfaceString = CommandLineView.getString("Please enter interface you would like to use: \n\tinteractive, stream, or reporting\n");
     	while(true){
     		if(interfaceString.equals("interactive")){
-    			//new InteractiveController();
+    			new InteractiveController();
     		}else if(interfaceString.equals("stream")){
     			new UsageReaderController();
     		}else if(interfaceString.equals("reporting")){
