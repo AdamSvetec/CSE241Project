@@ -44,6 +44,22 @@ public class CommandLineView{
 		}while(true);
 	}
 
+	//Get boolean from user at command line given prompt
+	public static boolean getBoolean(String prompt){
+		Scanner scanner = new Scanner(System.in);
+		String response;
+		do{
+			System.out.print(prompt+" (y or n): ");
+			response = scanner.next();
+			if(response.equals("y")){
+				return true;
+			}else if(response.equals("n")){
+				return false;
+			}
+			System.out.println("Input not recognized");
+		}while(true);
+	}
+
 	//Get account type from user at command line given prompt
 	public static Account.AccountType getAccountType(String prompt){
 		Scanner scanner = new Scanner(System.in);

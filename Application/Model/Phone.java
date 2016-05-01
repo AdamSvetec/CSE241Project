@@ -115,4 +115,9 @@ public class Phone{
 	public String getModel(){
 		return phoneModel;
 	}
+
+	//Get string description for this phone
+	public String getDescription(){
+		return "MEID: "+meid+", Manufacturer: "+manufacturer+", Model: "+phoneModel;
+	}
 }

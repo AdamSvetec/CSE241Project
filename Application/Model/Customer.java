@@ -146,4 +146,9 @@ public class Customer{
 	public void setAddress(String address){
 		this.address = address;
 	}
+
+	//Get description string
+	public String getDescription(){
+		return "ID: "+customerId+", Name: "+name+", Address: "+address;
+	}
 }

@@ -48,7 +48,7 @@ public class Account{
 	}
 
 	//Insert given account into the database
-	private int insert(){
+	public int insert(){
 		Connection conn = DBConnection.getConnection();
 		try{
 			Statement s = conn.createStatement();
@@ -187,5 +187,10 @@ public class Account{
 	//Set accountType
 	public void setAccountType(AccountType accountType){
 		this.accountType = accountType;
+	}
+
+	//Get string description of this account
+	public String getDescription(){
+		return "Account ID: "+accountId+", Customer ID: "+customerId+", Plan Type: "+planType+", Account Type: "+accountType;
 	}
 }
