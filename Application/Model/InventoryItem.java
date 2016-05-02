@@ -26,8 +26,10 @@ public class InventoryItem{
 
 	//Insert given InventoryItem into the database
 	public boolean insert(){
-		String query = "insert into inventory_item values ( '"+meid+"', '"+address+"' )";
-		return DBConnection.submitQuery(query);
+		//String query = "insert into inventory_item values ( '"+meid+"', '"+address+"' )";
+		String query = "insert into inventory_item values ( ?, ? )";
+		List<String> params = Arrays.asList(""+meid, address);
+		return DBConnection.submitPreparedQuery(query, params);
 	}
 
 	//Query db for given instance of inventory_item

@@ -34,8 +34,10 @@ public class InternetAccess{
 	//Use PLSQL trigger to automatically increment id
 	//TODO: ID needs to be updated when doing this...
 	public boolean insert(){
-		String query = "insert into internet_access values ( '"+id+"', '"+meid+"', "+DateFormatter.toString(usageTime)+", '"+accessBytes+"')";
-		return DBConnection.submitQuery(query);
+		//String query = "insert into internet_access values ( '"+id+"', '"+meid+"', "+DateFormatter.toString(usageTime)+", '"+accessBytes+"')";
+		String query = "insert into internet_access values ( ?, ?, "+DateFormatter.toString(usageTime)+", ?)";
+		List<String> params = Arrays.asList(""+id, ""+meid, ""+accessBytes);
+		return DBConnection.submitPreparedQuery(query, params);
 	}
 
 	//Query a given InternetAccess from the db given an id

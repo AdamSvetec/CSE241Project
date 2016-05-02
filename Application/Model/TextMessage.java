@@ -34,8 +34,10 @@ public class TextMessage{
 	//Use PLSQL trigger to automatically increment id
 	//TODO: ID needs to be updated when doing this...
 	public boolean insert(){
-		String query = "insert into text_message values ( '"+id+"', '"+meid+"', "+DateFormatter.toString(sendTime)+", '"+messageSize+"', '"+secondaryNumber+"' )";
-		return DBConnection.submitQuery(query);
+		//String query = "insert into text_message values ( '"+id+"', '"+meid+"', "+DateFormatter.toString(sendTime)+", '"+messageSize+"', '"+secondaryNumber+"' )";
+		String query = "insert into text_message values ( ?, ?, "+DateFormatter.toString(sendTime)+", ?, ?)";
+		List<String> params = Arrays.asList(""+id, ""+meid, ""+messageSize, secondaryNumber);
+		return DBConnection.submitPreparedQuery(query, params);
 	}
 
 	//Populates database with random data

@@ -30,8 +30,10 @@ public class Customer{
 	//Use PLSQL trigger to automatically increment id
 	//TODO: ID needs to be updated when doing this...
 	public boolean insert(){
-		String query = "insert into customer values ( '"+customerId+"', '"+name+"', '"+address+"')";
-		return DBConnection.submitQuery(query);
+		//String query = "insert into customer values ( '"+customerId+"', '"+name+"', '"+address+"')";
+		String query = "insert into customer values ( ?, ?, ?)";
+		List<String> params = Arrays.asList(""+customerId, name, address);
+		return DBConnection.submitPreparedQuery(query, params);
 	}
 
 	//Query a given Customer from the db given an id

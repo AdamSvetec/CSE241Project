@@ -35,8 +35,10 @@ public class Plan{
 
 	//Insert given plan_type into the database
 	private boolean insert(){
-		String query = "insert into plan values ( '"+planType.toString()+"' )";
-		return DBConnection.submitQuery(query);
+		//String query = "insert into plan values ( '"+planType.toString()+"' )";
+		String query = "insert into plan values ( ? )";
+		List<String> params = Arrays.asList(planType.toString());
+		return DBConnection.submitPreparedQuery(query, params);
 	}
 
 	//Populates database with random data

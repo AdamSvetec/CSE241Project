@@ -51,8 +51,10 @@ public class Account{
 	//Use PLSQL trigger to automatically increment id
 	//TODO: ID needs to be updated when doing this...
 	public boolean insert(){
-		String query = "insert into account values ( '"+accountId+"', '"+customerId+"', '"+planType.toString()+"', '"+accountType.toString()+"' )";
-		return DBConnection.submitQuery(query);
+		//String query = "insert into account values ( '"+accountId+"', '"+customerId+"', '"+planType.toString()+"', '"+accountType.toString()+"' )";
+		String query = "insert into account values ( ?, ?, ?, ? )";
+		List<String> params = Arrays.asList(""+accountId, ""+customerId, planType.toString(), accountType.toString());
+		return DBConnection.submitPreparedQuery(query, params);
 	}
 
 	//Query a given Account from the db given an id

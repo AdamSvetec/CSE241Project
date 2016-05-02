@@ -34,8 +34,10 @@ public class PhoneCall{
 	//Use PLSQL trigger to automatically increment id
 	//TODO: ID needs to be updated when doing this...
 	public boolean insert(){
-		String query = "insert into phone_call values ( '"+id+"', '"+meid+"', "+DateFormatter.toString(startTime)+", "+DateFormatter.toString(endTime)+", '"+secondaryNumber+"' )";
-		return DBConnection.submitQuery(query);
+		//String query = "insert into phone_call values ( '"+id+"', '"+meid+"', "+DateFormatter.toString(startTime)+", "+DateFormatter.toString(endTime)+", '"+secondaryNumber+"' )";
+		String query = "insert into phone_call values ( ?, ?, "+DateFormatter.toString(startTime)+", "+DateFormatter.toString(endTime)+", ? )";
+		List<String> params = Arrays.asList(""+id, ""+meid, secondaryNumber);
+		return DBConnection.submitPreparedQuery(query, params);
 	}
 
 	//Populates database with random data

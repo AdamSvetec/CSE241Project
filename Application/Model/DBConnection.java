@@ -3,6 +3,7 @@
 
 import java.io.*;
 import java.sql.*;
+import java.util.List;
 
 //DBConnection is used to connect to the edgar1 database and validate users
 //It also accepts queries and returns result sets
@@ -17,6 +18,22 @@ public class DBConnection{
 			if(conn != null){
 				return true;
 			}
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+		}
+		return false;
+	}
+
+	//Submits a query and returns a boolean if successful
+	public static boolean submitPreparedQuery(String preparedQuery, List<String> arguments){
+		try{
+			PreparedStatement ps = getConnection().prepareStatement(preparedQuery);
+			for(int i = 0; i < arguments.size(); i++){
+				ps.setString(i+1, arguments.get(i));
+			}
+			ps.executeQuery();
+			ps.close();
+			return true;
 		}catch(SQLException sqle){
 			Logger.logError(sqle.getMessage());
 		}

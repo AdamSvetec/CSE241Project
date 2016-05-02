@@ -28,8 +28,10 @@ public class Phone{
 
 	//Insert given phone into the database
 	public boolean insert(){
-		String query = "insert into phone values ( '"+meid+"', '"+manufacturer+"', '"+phoneModel+"' )";
-		return DBConnection.submitQuery(query);
+		//String query = "insert into phone values ( '"+meid+"', '"+manufacturer+"', '"+phoneModel+"' )";
+		String query = "insert into phone values ( ?, ?, ? )";
+		List<String> params = Arrays.asList(""+meid, manufacturer, phoneModel);
+		return DBConnection.submitPreparedQuery(query, params);
 	}
 
 	//Query phone given an meid

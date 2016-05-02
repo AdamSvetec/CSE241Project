@@ -27,8 +27,10 @@ public class Store{
 
 	//Insert given Store into the database
 	public boolean insert(){
-		String query = "insert into store values ( '"+address+"', '"+(isOnline ? 1 : 0)+"', '"+stockLimit+"')";
-		return DBConnection.submitQuery(query);
+		//String query = "insert into store values ( '"+address+"', '"+(isOnline ? 1 : 0)+"', '"+stockLimit+"')";
+		String query = "insert into store values ( ?, ?, ?)";
+		List<String> params = Arrays.asList(address, ""+(isOnline ? 1 : 0), ""+stockLimit);
+		return DBConnection.submitPreparedQuery(query, params);
 	}
 
 	//Query Store from db given address

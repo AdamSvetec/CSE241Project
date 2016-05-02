@@ -31,8 +31,10 @@ public class PhoneNumber{
 
 	//Insert given phone_number into the database
 	public boolean insert(){
-		String query = "insert into phone_number values ( '"+phoneNumber+"', '"+(isPrimary ? 1 : 0)+"', '"+accountId+"', '"+meid+"' )";
-		return DBConnection.submitQuery(query);
+		//String query = "insert into phone_number values ( '"+phoneNumber+"', '"+(isPrimary ? 1 : 0)+"', '"+accountId+"', '"+meid+"' )";
+		String query = "insert into phone_number values ( ?, ?, ?, ? )";
+		List<String> params = Arrays.asList(phoneNumber, ""+(isPrimary ? 1 : 0), ""+accountId, ""+meid);
+		return DBConnection.submitPreparedQuery(query, params);
 	}
 
 	//Query a given phone_number from db given the phoneNumber
