@@ -48,27 +48,11 @@ public class Account{
 	}
 
 	//Insert given account into the database
-	public int insert(){
-		Connection conn = DBConnection.getConnection();
-		try{
-			Statement s = conn.createStatement();
-			ResultSet rs = s.executeQuery("select max(account_id) as MAX from account");
-			if(rs.next()){
-				this.accountId = rs.getInt("MAX") + 1;
-			}else{
-				this.accountId = 1;
-			}
-			rs.close();
-			s.close();
-		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
-			return -1;
-		}
+	//Use PLSQL trigger to automatically increment id
+	//TODO: ID needs to be updated when doing this...
+	public boolean insert(){
 		String query = "insert into account values ( '"+accountId+"', '"+customerId+"', '"+planType.toString()+"', '"+accountType.toString()+"' )";
-		if(!DBConnection.submitQuery(query)){
-			this.accountId = -1;
-		}
-		return this.accountId;
+		return DBConnection.submitQuery(query);
 	}
 
 	//Query a given Account from the db given an id

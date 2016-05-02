@@ -44,10 +44,9 @@ public class InteractiveController{
 		int choice = CommandLineView.getInt("1 : Save Customer\n2 : Cancel\n");
 		if(choice == 1){
 			Customer customer = Customer.create(name, address);
-			int id = customer.insert();
-			if(id >= 0){
+			boolean success = customer.insert();
+			if(success){
 				System.out.println("Customer creation successful");
-				System.out.println("Customer id is : "+id);
 				getActionToBePerformed();
 			}else{
 				System.out.println("Failed to save customer.\n\tPlease check length of name and address");
@@ -73,10 +72,9 @@ public class InteractiveController{
 		int choice = CommandLineView.getInt("1 : Save Account\n2 : Cancel\n");
 		if(choice == 1){
 			Account account = Account.create(customerId, pt, at);
-			int id = account.insert();
-			if(id >= 0){
+			boolean success = account.insert();
+			if(success){
 				System.out.println("Account creation successful");
-				System.out.println("Account id is : "+id);
 				getActionToBePerformed();
 			}else{
 				System.out.println("Failed to save account.\n\tPlease check the customer id is valid");

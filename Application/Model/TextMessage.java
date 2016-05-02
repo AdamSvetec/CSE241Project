@@ -31,27 +31,11 @@ public class TextMessage{
 	}
 
 	//Insert given text_message into the database
-	public int insert(){
-		Connection conn = DBConnection.getConnection();
-		try{
-			Statement s = conn.createStatement();
-			ResultSet rs = s.executeQuery("select max(id) as MAX from text_message");
-			if(rs.next()){
-				this.id = rs.getInt("MAX") + 1;
-			}else{
-				this.id = 1;
-			}
-			rs.close();
-			s.close();
-		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
-			return -1;
-		}
+	//Use PLSQL trigger to automatically increment id
+	//TODO: ID needs to be updated when doing this...
+	public boolean insert(){
 		String query = "insert into text_message values ( '"+id+"', '"+meid+"', "+DateFormatter.toString(sendTime)+", '"+messageSize+"', '"+secondaryNumber+"' )";
-		if(!DBConnection.submitQuery(query)){
-			this.id = -1;
-		}
-		return this.id;
+		return DBConnection.submitQuery(query);
 	}
 
 	//Populates database with random data

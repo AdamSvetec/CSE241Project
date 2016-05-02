@@ -126,7 +126,7 @@ public class UsageImporter{
 		}
 
 		TextMessage textMessage = TextMessage.create(meid, sendTime, messageSize, secondaryNumber);
-		if(-1 != textMessage.insert()){
+		if(textMessage.insert()){
 			textMessageCount++;
 		}else{
 			errorString.append("Error at line "+lineCounter+": unable to insert text message.\n\t-Check that meid is valid and message size is not too large\n");
@@ -178,7 +178,7 @@ public class UsageImporter{
 		}
 
 		PhoneCall phoneCall = PhoneCall.create(meid, startTime, endTime, secondaryNumber);
-		if(-1 != phoneCall.insert()){
+		if(phoneCall.insert()){
 			phoneCallCount++;
 		}else{
 			errorString.append("Error at line "+lineCounter+": unable to insert phone call.\n\t-Check that meid is valid\n");
@@ -222,7 +222,7 @@ public class UsageImporter{
 		}
 
 		InternetAccess internetAccess = InternetAccess.create(meid, usageTime, accessBytes);
-		if(-1 != internetAccess.insert()){
+		if(internetAccess.insert()){
 			internetUseCount++;
 		}else{
 			errorString.append("Error at line "+lineCounter+": unable to insert internet access.\n\t-Check that meid is valid and access bytes may be too large\n");

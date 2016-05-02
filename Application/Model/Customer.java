@@ -27,27 +27,11 @@ public class Customer{
 	}
 
 	//Insert the given Customer into the database
-	public int insert(){
-		Connection conn = DBConnection.getConnection();
-		try{
-			Statement s = conn.createStatement();
-			ResultSet rs = s.executeQuery("select max(customer_id) as MAX from customer");
-			if(rs.next()){
-				this.customerId = rs.getInt("MAX") + 1;
-			}else{
-				this.customerId = 1;
-			}
-			rs.close();
-			s.close();
-		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
-			return -1;
-		}
+	//Use PLSQL trigger to automatically increment id
+	//TODO: ID needs to be updated when doing this...
+	public boolean insert(){
 		String query = "insert into customer values ( '"+customerId+"', '"+name+"', '"+address+"')";
-		if(!DBConnection.submitQuery(query)){
-			this.customerId = -1;
-		}
-		return this.customerId;
+		return DBConnection.submitQuery(query);
 	}
 
 	//Query a given Customer from the db given an id
