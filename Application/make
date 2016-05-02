@@ -4,10 +4,17 @@ set -v
 
 mkdir -p Output
 
-rm Output/*.class
+rm Output/*.class Output/*.jar
 
 cp -n Libraries/* Output/
 
 javac -g -d Output -classpath ./:Output/:Model/:Controllers/:Views/:Misc/ JogWireless.java
 
 javac -g -d Output -classpath ./:Output/:Model/:Controllers/:Views/:Misc/ Misc/DBPopulator.java
+
+set +v
+
+if [ $# -ge 1 ] && [ $1 == "jar" ]; then
+	cd Output
+	jar cfm JogWireless.jar Manifest.txt ./*.class
+fi

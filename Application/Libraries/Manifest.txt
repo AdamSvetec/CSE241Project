@@ -1,0 +1,2 @@
+Main-Class: JogWireless
+Class-Path: ojdbc6.jar
