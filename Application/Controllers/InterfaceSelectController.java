@@ -9,17 +9,15 @@ public class InterfaceSelectController{
 
     //Gets the user to select the interface they would like to use
     public void selectInterface(){
-    	String interfaceString = CommandLineView.getString("Please enter interface you would like to use: \n\tinteractive, stream, or reporting\n");
+    	int interfaceChoice = CommandLineView.getInt("Please enter interface you would like to explore: \n\t1 : Interactive\n\t-Employee handles requests from customer in store\n\t2 : Streaming\n\t-Employee reads in usage record file\n");
     	while(true){
-    		if(interfaceString.equals("interactive")){
+    		if(interfaceChoice == 1){
     			new InteractiveController();
-    		}else if(interfaceString.equals("stream")){
+    		}else if(interfaceChoice == 2){
     			new UsageReaderController();
-    		}else if(interfaceString.equals("reporting")){
-    			//new ReportingController();
     		}else{
-    			interfaceString = CommandLineView.getString("Did not recognize selection.\nPlease enter interface you would like to use:\n\tinteractive, stream, or reporting\n");
-    			continue;
+                System.out.println("Error: did not recognize choice, please try again");
+    			selectInterface();
     		}
     		return;
     	}

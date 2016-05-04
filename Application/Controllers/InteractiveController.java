@@ -12,7 +12,8 @@ public class InteractiveController{
 
 	//Gets choice of action from user
 	private void getActionToBePerformed(){
-		String prompt = "1 : Add New Customer\n";
+		String prompt = "Please enter number for the action you would like to perform\n";
+		prompt += "1 : Add New Customer\n";
 		prompt += "2 : Add New Account\n";
 		prompt += "3 : Add New Phone\n";
 		prompt += "4 : Add New Phone Number\n";
