@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ $# -ge 1 ] && [ $1 == "populate" ]; then
+	set -x
+	java -cp Application/Output/:Application/Output/ojdbc6.jar DBPopulator
+else
+	set -x
+	java -jar JogWireless.jar
+fi
