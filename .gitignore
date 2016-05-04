@@ -1,3 +1,5 @@
 Application/Output/
-Application/RuntimeLog.txt
+RuntimeLog.txt
 *~
+JogWireless.jar
+ojdbc6.jar
