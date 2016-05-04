@@ -12,13 +12,13 @@ import java.util.Date;
 public class Logger{
 
 	//Populates database with random data
-	public static void logError(String error){
-		System.out.println("Error: "+error);
+	public static void log(String message){
+		System.out.println(message);
 
 		try {
 			File yourFile = new File("RuntimeLog.txt");
     		yourFile.createNewFile();
-            Files.write(Paths.get(yourFile.getPath()), (""+new Date()+" : "+error+"\n").getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get(yourFile.getPath()), (""+new Date()+" : "+message+"\n").getBytes(), StandardOpenOption.APPEND);
         }catch (IOException ioe) {
             System.out.println("Error: logging failed");
         }

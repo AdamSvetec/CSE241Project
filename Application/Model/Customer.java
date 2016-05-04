@@ -49,7 +49,7 @@ public class Customer{
 			rs.close();
 			s.close();
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 		}
 		return customer;
 	}
@@ -63,7 +63,7 @@ public class Customer{
 			rs.close();
 			s.close();
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 			return false;
 		}
 		return true;
@@ -82,7 +82,7 @@ public class Customer{
 			rs.close();
 			s.close();
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 		}
 		return customerList;
 	}

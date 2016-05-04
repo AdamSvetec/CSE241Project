@@ -14,9 +14,11 @@ public class LoginController{
   			String username = CommandLineView.getString("Please enter oracle username: ");
 			String password = CommandLineView.getString("Please enter oracle password: ");
 			if(DBConnection.validate(username, password)){
+				Logger.log("Login successful. Username : "+username);
 				new InterfaceSelectController();
 				return;
 			}else{
+				Logger.log("Login failed. Username : "+username);
 				System.out.println("Error: username/password invalid");
 			}
 		}while(true);

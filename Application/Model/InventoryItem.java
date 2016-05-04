@@ -45,7 +45,7 @@ public class InventoryItem{
 			rs.close();
 			s.close();
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 		}
 		return item;
 	}
@@ -59,7 +59,7 @@ public class InventoryItem{
 			rs.close();
 			s.close();
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 			return false;
 		}
 		return true;

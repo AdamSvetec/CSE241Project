@@ -47,7 +47,7 @@ public class Phone{
 			rs.close();
 			s.close();
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 		}
 		return phone;
 	}
@@ -65,7 +65,7 @@ public class Phone{
 			rs.close();
 			s.close();
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 		}
 		return phoneList;
 	}

@@ -19,7 +19,7 @@ public class DBConnection{
 				return true;
 			}
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 		}
 		return false;
 	}
@@ -35,7 +35,7 @@ public class DBConnection{
 			ps.close();
 			return true;
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 		}
 		return false;
 	}
@@ -48,7 +48,7 @@ public class DBConnection{
 			s.close();
 			return true;
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 		}
 		return false;
 	}
@@ -68,7 +68,7 @@ public class DBConnection{
 			getConnection().close();
 			conn = null;
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 		}
 	}
 }

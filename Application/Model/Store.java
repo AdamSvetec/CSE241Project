@@ -46,7 +46,7 @@ public class Store{
 			rs.close();
 			s.close();
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 		}
 		return store;
 	}
@@ -60,7 +60,7 @@ public class Store{
 			rs.close();
 			s.close();
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 			return false;
 		}
 		return true;
@@ -79,7 +79,7 @@ public class Store{
 			rs.close();
 			s.close();
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 		}
 		return storeList;
 	}

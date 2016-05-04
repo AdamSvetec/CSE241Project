@@ -50,7 +50,7 @@ public class PhoneNumber{
 			rs.close();
 			s.close();
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 		}
 		return number;
 	}
@@ -64,7 +64,7 @@ public class PhoneNumber{
 			rs.close();
 			s.close();
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 			return false;
 		}
 		return true;
@@ -83,7 +83,7 @@ public class PhoneNumber{
 			rs.close();
 			s.close();
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 		}
 		return phoneNumList;
 	}

@@ -53,7 +53,7 @@ public class InternetAccess{
 			rs.close();
 			s.close();
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 		}
 		return ia;
 	}
@@ -71,7 +71,7 @@ public class InternetAccess{
 			rs.close();
 			s.close();
 		}catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
+			Logger.log(sqle.getMessage());
 		}
 		return iaList;
 	}

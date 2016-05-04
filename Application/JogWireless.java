@@ -10,6 +10,7 @@ public class JogWireless{
 	//Main application
 	public static void main(String [] args){
 		createClosingHook();
+		Logger.log("Application opened");
 		new LoginController();
 	}
 
@@ -17,6 +18,7 @@ public class JogWireless{
 	private static void createClosingHook(){
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
     		public void run() {
+    			Logger.log("Application closed");
     			DBConnection.closeConnection();
     		}
 		}));
