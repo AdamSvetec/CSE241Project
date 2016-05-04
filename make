@@ -18,5 +18,5 @@ cd Output/
 
 jar cfm JogWireless.jar Manifest.txt ./*.class
 
-cp JogWireless.jar ../../JogWireless.jar
+cp JogWireless.jar ../../ajs217.jar
 cp ojdbc6.jar ../../ojdbc6.jar

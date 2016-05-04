@@ -4,7 +4,7 @@ Final Project
 
 RUNNING APPLICATION
 
-Using "java -jar ajs217.jar" should work fine. A run script is also provided in the Application directory and can be used using the command "Application/run".
+Using "java -jar ajs217.jar" should work fine. A run script is also provided and can be used using the command "./run".
 
 LOGGING IN
 
@@ -20,7 +20,7 @@ The second is a reader that allows an employee to read in a csv file of usage re
 
 COMPILING APPLICATION
 
-To compile the application, because of the slightly complex nature of the source directories, please use the provided makefile. This can be run using the command, "Application/make" from the ajs217svetec directory. Note all of the command from the bash script can be executed individually to test if there are any doubts. By nature, the actual jar file is compiled into the Application/Output/ directory and is then copied into the top-level directory along with the ojdbc6.jar file. 
+To compile the application, because of the slightly complex nature of the source directories, please use the provided makefile. This can be run using the command, "./make" from the ajs217svetec directory. Note all of the command from the bash script can be executed individually to test if there are any doubts. By nature, the actual jar file is compiled into the Application/Output/ directory and is then copied into the top-level directory along with the ojdbc6.jar file. 
 
 SOURCE CODE STRUCTURE
 
@@ -37,4 +37,4 @@ The application's main method is stored in the JogWireless class.
 
 DATA GENERATION
 
-To regenerate the data if so desired, please use the command "Application/run populate" from the command line.
+To regenerate the data if so desired, please use the command "./run populate" from the command line.
