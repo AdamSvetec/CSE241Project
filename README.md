@@ -22,7 +22,9 @@ COMPILING APPLICATION
 
 To compile the application, because of the slightly complex nature of the source directories, please use the provided makefile. This can be run using the command, "./make" from the ajs217svetec directory. Note all of the command from the bash script can be executed individually to test if there are any doubts. By nature, the actual jar file is compiled into the Application/Output/ directory and is then copied into the top-level directory along with the ojdbc6.jar file. 
 
-SOURCE CODE STRUCTURE
+SOURCE CODE
+
+All source code is located in the ajs217 directory as specified in the directions, however these are simply a copy of all source files in the Application directory.
 
 The source code is structured in the following manner:
 
