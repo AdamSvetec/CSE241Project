@@ -40,3 +40,7 @@ The application's main method is stored in the JogWireless class.
 DATA GENERATION
 
 To regenerate the data if so desired, please use the command "./run populate" from the command line.
+
+TRIGGERS
+
+Triggers were added in PLSQL for facilitating the insertion of Account, Customer, Phone Call, Text Message, and Internet Access. Because all of these relations have arbitrary id's, whenever a tuple is inserted it adds one to the currently highest id and inserts it with that new id.
