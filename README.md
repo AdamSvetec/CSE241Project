@@ -2,8 +2,6 @@ Adam Svetec (ajs217)
 CSE241
 Final Project
 
-demo
-
 RUNNING APPLICATION
 
 Using "java -jar ajs217.jar" should work fine. A run script is also provided and can be used using the command "./run".
